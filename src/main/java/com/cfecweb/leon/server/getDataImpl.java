@@ -35,7 +35,6 @@ import com.cfecweb.leon.client.model.GWTfisheryTable;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class getDataImpl extends RemoteServiceServlet implements getData {
 	private static final long serialVersionUID = 1L;
-	public Logging leonLog = new Logging();
 	private final int timeInMinutes = 20;
 	private static String leonproplocation = "/home/tomcat/properties/leon.properties";
 	//private static String leonproplocation = "C:\\home\\tomcat\\properties\\leonWin.properties";
