@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="60">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+        <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <Socket name="GwtLog"
+            host="bacon.cfec.state.ak.us"
+            port="4714"
+            protocol="tcp"
+            reconnectionDelayMillis="10000">
+        <SerializedLayout/>
+        </Socket>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="gwt-log" level="debug" additivity="false">
+            <AppenderRef ref="GwtLog"/>
+        </Logger>
+
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

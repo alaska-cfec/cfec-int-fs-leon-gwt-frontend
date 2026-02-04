@@ -1,0 +1,116 @@
+04/074/2013
+
+Hey guys,
+
+I wanted to send you some note on how to get eclipse with GWT plugin working with maven.   I try next to get this working in win7 64bit then its GXT, gilead and others!
+
+
+
+
+ Today it's working in mint linux using eclipse 64bit Juno
+
+Here is a page listing the special maven plug in eclipse needs:
+http://pgt.de/2012/12/19/gpe-eclipse-and-maven-never-ending-story-done/
+
+make sure you have:
+
+What you need:
+
+    m2e – maven integration for eclipse
+
+    http://download.eclipse.org/technology/m2e/releases
+    m2e-wtp – maven Integration for WTP
+
+    http://download.eclipse.org/m2e-wtp/releases/
+
+I am using the latest stable releases from eclipse.org. Well, not always, I am going as stable as possible: the actual wtp integration is still in incubation… but works…
+
+Talking numbers, this are the version numbers I used here:
+
+    m2e – Maven Integration for Eclipse 1.2.0.20120903-1050
+    m2e-wtp – Maven Integration for WTP (Incubation) 0.16.0.20120914-0945
+    m2e connector for mavenarchiver pom properties 0.15.0.201207090125-signed-201209140800
+
+I have installed a few m2e connectors I required for other non GWT projects, I think they are not
+
+
+Run the mvn command that builds a GWT project:
+
+
+http://mojo.codehaus.org/gwt-maven-plugin/user-guide/archetype.html
+They call this page a Maven GWT Plug in as far as I can tell the thing installs on the command line withwith:
+
+ mvn archetype:generate \
+   -DarchetypeGroupId=org.codehaus.mojo \
+   -DarchetypeArtifactId=gwt-maven-plugin \
+   -DarchetypeVersion=2.5.1
+
+
+
+
+ 
+3.  Run gwt first on command line so project is compiled before you import into eclipse!  Took a while to figure this step out.
+
+mvn gwt:run
+
+
+4. import into file --> import --> maven ---> existing maven project
+
+5. Project should import with one error:
+Description    Resource    Path    Location    Type
+Plugin execution not covered by lifecycle configuration: org.codehaus.mojo:gwt-maven-plugin:2.5.1:i18n (execution: default, phase: generate-sources)    pom.xml    /a1    line 69    Maven Project Build Lifecycle Mapping Problem
+
+But will still run, right click project run as web application, proceeed with errors
+
+
+6. fix above error with this xml added to your pom.xml beteen </plugins> and <build>
+
+from: http://stackoverflow.com/questions/13060569/using-a-gwt-maven-project-in-eclipse
+
+<pluginManagement>
+            <plugins>
+                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.codehaus.mojo</groupId>
+                                        <artifactId>
+                                            gwt-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [2.4.0,)
+                                        </versionRange>
+                                        <goals>
+                                            <goal>i18n</goal>
+                                            <goal>generateAsync</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore></ignore>
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+
+
+7. right click project ---> Maven --> update project
+
+7.5  F5 or refresh project 
+
+
+8. buy brant a beer for two days of figuring this out.
+
+
+
+

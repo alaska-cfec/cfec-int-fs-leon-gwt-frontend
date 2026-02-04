@@ -1,0 +1,76 @@
+
+04/25/2012
+Rough guild how to convert a GWT, GXT, Hibenate, Gilead project to use maven.  
+
+
+
+generate base project
+
+mvn archetype:generate  -DarchetypeGroupId=org.codehaus.mojo -DarchetypeArtifactId=gwt-maven-plugin  -DarchetypeVersion=2.5.1
+
+use same package lay out as the one your porting:
+
+in this case:
+
+Confirm properties configuration:
+groupId: com.cfecweb
+artifactId: BBAY
+version: 1.0-SNAPSHOT
+package: com.cfecweb.bbay
+module: BristolBay
+Y: Y
+
+
+from command line get the base project running:
+
+mvn gwt:run
+mvn clean compile
+
+
+import into eclipse and make sure base project compiles and runs
+file-->import-->maven-->existing maven project
+
+add maven pluginManagement to pom.xml
+rebuild maven project
+
+Make sure JDK is 1.6 or above
+
+
+
+Add dependencies to pom.xml
+
+
+
+
+Copy files from com.cfecweb.bbay.client into new source folder
+com.cfecweb.bbay.server into new source folder
+com.cfecweb.bbay.shared into new source folder
+
+Fix up needed resources into src/main/resources
+BristolBay.gwt.xml  (modual config file)
+hibernate.cfg.xml
+hibernate.reveng.xml
+log4j.properties
+
+Fix up the web root: copy files into src --> main  --> webapp
+web.xml    i
+css folder
+BristolBay.html
+gxt-resources
+images
+
+move hmb.xml files to  src/main/resources/com/cfecweb/bbay/shared
+
+
+mvn clean compile
+mvn gwt:run
+
+in eclipse 
+maven --> rebuild
+f5 refreesh project
+
+
+
+
+
+

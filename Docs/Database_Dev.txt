@@ -1,0 +1,80 @@
+
+
+Install Oracle 12.1 
+install sqldev and make connections to prod tier1 and tier2
+use the sqldev copy dabase to move tables from prod tier1 and tier2 to local dev. 
+
+user the sql below for the tier1 to tier2 grants, rebuild the needed views and packages etc...
+
+grant select on aac to tier2;
+
+grant select on adj to tier2;
+
+
+grant select on adr to tier2;
+
+
+grant select on cou to tier2;
+
+
+grant select on doc to tier2;
+
+
+grant select on est to tier2;
+
+
+
+
+grant select on fil to tier2;
+
+grant select on lie to tier2;
+
+
+grant select on msn to tier2;
+
+
+grant select on nam to tier2;
+
+
+grant select on oid to tier2;
+
+
+grant select on pac to tier2;
+
+
+
+grant select on pmt to tier2;
+
+grant select on ppl to tier2;
+
+
+grant select on pst to tier2;
+
+
+grant select on rev to tier2;
+
+
+grant select on sas to tier2;
+
+
+grant select on tad to tier2;
+
+
+
+
+
+grant select on tap to tier2;
+
+grant select on tbl to tier2;
+
+
+grant select on tse to tier2;
+
+
+grant select on tsv to tier2;
+
+
+grant select on vac to tier2;
+
+
+grant select on ves to tier2;

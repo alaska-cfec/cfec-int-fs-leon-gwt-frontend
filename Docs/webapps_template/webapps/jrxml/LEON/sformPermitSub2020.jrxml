@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sformPermitSub" language="groovy" pageWidth="595" pageHeight="842" columnWidth="593" leftMargin="0" rightMargin="2" topMargin="4" bottomMargin="2">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cnum" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select p.cfecid, p.ryear, p.fishery, p.serial, p.adfg, p.fee, p.intends, p.msna, p.receiveddate, p.confirmcode, p.description, p.status, p.pyear, p.lastupdated, p.nointends, p.notes,
+COALESCE(c.object, 'none') as newadfg
+from arenew_permits p
+left join arenew_changes c on c.confirmcode = p.confirmcode and c.type = 'Permits' and c.attribute = 'pAdfg' and c.object = p.serial
+where p.confirmcode = $P{cnum}]]>
+	</queryString>
+	<field name="CFECID" class="java.lang.String"/>
+	<field name="RYEAR" class="java.lang.String"/>
+	<field name="FISHERY" class="java.lang.String"/>
+	<field name="SERIAL" class="java.lang.String"/>
+	<field name="ADFG" class="java.lang.String"/>
+	<field name="FEE" class="java.lang.String"/>
+	<field name="INTENDS" class="java.lang.String"/>
+	<field name="MSNA" class="java.lang.String"/>
+	<field name="RECEIVEDDATE" class="java.sql.Timestamp"/>
+	<field name="CONFIRMCODE" class="java.lang.String"/>
+	<field name="DESCRIPTION" class="java.lang.String"/>
+	<field name="STATUS" class="java.lang.String"/>
+	<field name="PYEAR" class="java.lang.String"/>
+	<field name="LASTUPDATED" class="java.sql.Timestamp"/>
+	<field name="NOINTENDS" class="java.lang.String"/>
+	<field name="NOTES" class="java.lang.String"/>
+	<field name="NEWADFG" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<staticText>
+				<reportElement x="62" y="0" width="36" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Intend:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="99" y="0" width="15" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{INTENDS}.equalsIgnoreCase( "false" ) ? "N" : "Y"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="119" y="0" width="38" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Fishery:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="161" y="0" width="40" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FISHERY}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="206" y="0" width="30" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Serial:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="240" y="0" width="40" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{SERIAL}.equalsIgnoreCase( "Not Issued" ) ? "" : $F{SERIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="285" y="0" width="32" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[ADFG:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="321" y="0" width="40" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NEWADFG}.trim().equalsIgnoreCase( $F{SERIAL} ) && $F{PYEAR}.trim().equalsIgnoreCase( "2020" ) ? "<b><u>"+$F{ADFG}+"</u></b>" : $F{ADFG})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="366" y="0" width="25" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Year:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="395" y="0" width="40" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PYEAR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="440" y="0" width="32" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[MSNA:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="476" y="0" width="30" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{MSNA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="511" y="0" width="24" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Fee:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="539" y="0" width="40" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FEE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="40" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[<font color='green'>PERMIT</font>]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

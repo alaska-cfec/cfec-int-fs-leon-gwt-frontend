@@ -1,0 +1,3 @@
+mvn install:install-file -Dfile=pvjdbc2.jar -DgroupId=com.pervasive -DartifactId=pvjdbc2 -Dversion=9.52 -Dpackaging=jar
+
+mvn install:install-file -Dfile=pvjdbc2.jar -DgroupId=pervasive.database -DartifactId=psql -Dversion=9.52 -Dpackaging=jar

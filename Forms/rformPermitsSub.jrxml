@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rformPermitsSub" language="groovy" pageWidth="572" pageHeight="841" columnWidth="572" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cnum" class="java.lang.String"/>
+	<parameter name="vsize" class="java.lang.String"/>
+	<parameter name="psize" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select p.cfecid, p.ryear, p.fishery, p.serial, p.adfg, p.fee, p.intends, p.msna, p.receiveddate, p.confirmcode, p.description, p.status, p.pyear, p.lastupdated, p.nointends, p.notes,
+COALESCE(c.object, 'none') as newadfg
+from arenew_permits p
+left join arenew_changes c on c.confirmcode = p.confirmcode and c.type = 'Permits' and c.attribute = 'pAdfg' and c.object = p.fishery
+where p.confirmcode = $P{cnum}]]>
+	</queryString>
+	<field name="CFECID" class="java.lang.String"/>
+	<field name="RYEAR" class="java.lang.String"/>
+	<field name="FISHERY" class="java.lang.String"/>
+	<field name="SERIAL" class="java.lang.String"/>
+	<field name="ADFG" class="java.lang.String"/>
+	<field name="FEE" class="java.lang.String"/>
+	<field name="INTENDS" class="java.lang.String"/>
+	<field name="MSNA" class="java.lang.String"/>
+	<field name="RECEIVEDDATE" class="java.sql.Timestamp"/>
+	<field name="CONFIRMCODE" class="java.lang.String"/>
+	<field name="DESCRIPTION" class="java.lang.String"/>
+	<field name="STATUS" class="java.lang.String"/>
+	<field name="PYEAR" class="java.lang.String"/>
+	<field name="LASTUPDATED" class="java.sql.Timestamp"/>
+	<field name="NOINTENDS" class="java.lang.String"/>
+	<field name="NOTES" class="java.lang.String"/>
+	<field name="NEWADFG" class="java.lang.String"/>
+	<detail>
+		<band height="160" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="2" width="572" height="156"/>
+			</rectangle>
+			<textField>
+				<reportElement x="190" y="22" width="368" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="149" y="4" width="69" height="17"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FISHERY}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="22" width="175" height="15"/>
+				<textElement/>
+				<text><![CDATA[Permit Fishery Description ..........:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="190" y="39" width="368" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FISHERY}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="39" width="175" height="15"/>
+				<textElement/>
+				<text><![CDATA[Permit Fishery Code ...................:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="190" y="56" width="368" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{SERIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="56" width="175" height="15"/>
+				<textElement/>
+				<text><![CDATA[Permit Serial Number .................:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="190" y="73" width="368" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PYEAR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="73" width="175" height="15"/>
+				<textElement/>
+				<text><![CDATA[Permit Years to Renew ...............:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="190" y="90" width="368" height="15"/>
+				<textElement markup="html"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NEWADFG}.trim().equalsIgnoreCase( $F{FISHERY} ) ? "<b><u>"+$F{ADFG}+"</u></b>" : $F{ADFG})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="90" width="175" height="15"/>
+				<textElement/>
+				<text><![CDATA[Permit ADFG Number .................:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="190" y="107" width="368" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["\$ " + $F{FEE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="107" width="175" height="15"/>
+				<textElement/>
+				<text><![CDATA[Permit Fee Amount .....................:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="190" y="124" width="368" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{INTENDS}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="141" width="175" height="15"/>
+				<textElement/>
+				<text><![CDATA[Multiple Salmon Net Area ...........:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="124" width="175" height="15"/>
+				<textElement/>
+				<text><![CDATA[Permit Intent-to-Fish ...................:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="190" y="141" width="368" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{MSNA}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="76" y="4" width="68" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fishery:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="417" y="4" width="94" height="17"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{SERIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="344" y="4" width="68" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Permit:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="4" width="30" height="17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-----]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,26 @@
+The frame of this project is based on the Google Web Kit and their particular methodology of Rich Application Web Development. Outside of
+the occasional GWT method, the acutal GUI widgets come from a different source (more later). It is necessary to become familiar with
+GWT construction, directory structure, handlers and most importantly their RPC method. (Remote Procedure Call). This allows an ajaxian type service call
+from a client to a server with field level updates. All cient code, as well as server code, is written in Java. During compilation, optimized 
+javascript is automatically generated within the war directory for client upload. No more coding in JavaScript.
+
+Here is a link to the GWT site. http://code.google.com/webtoolkit/
+
+I recommend going through their docs and tutorials.
+
+The GWT library includes widgets for GUI construction, but it is certainly not their strength, they focus more on process then aesthetics.
+Because of that, I am using a seperate library for GUI widgets called GXT. GXT is basically the ExtJS library converted to pure Java. 
+
+Here is a link to their site. http://www.extjs.com/products/gxt/?ref=learnmorebluebutton
+
+GXT is in itself a complete framework, not requiring GWT, but I prefer the GWT methodology of services and development, so I use GXT for its
+widget library alone. Creating a new GWT project via the GWT toolkit requires some modification to incorporate the GXT library, which I will 
+document later.
+
+Other library requirements.
+
+GWT-LOGGING 3.0
+HIBERNATE 3.4
+iTEXT 2.1.4
+JAVAMAIL (latest version)
+ORACLE JDBC Driver ojdbc14.jar

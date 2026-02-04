@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sformVesselSub" language="groovy" pageWidth="612" pageHeight="792" columnWidth="610" leftMargin="0" rightMargin="2" topMargin="4" bottomMargin="2">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cnum" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/webapps/jrxml/LEON/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select distinct(v.ADFG), v.CFECID, v.CONFIRMCODE, v.RYEAR, v.NAME, v.REG_NUM, v.YEAR_BUILT, v.MAKE_MODEL, v.LENGTH, v.INCHES, v.FEE, v.GROSS_TONS, v.NET_TONS, v.HOMEPORT_CITY, v.ENGINE_TYPE,
+v.HORSEPOWER, v.EST_VALUE, v.HULL_TYPE, v.HULL_ID, v.FUEL, HOLD_TANK, v.LIVE_TANK, v.REFRIGERATION, v.RECEIVEDDATE, v.HOMEPORT_STATE, v.FOERIGN_FLAG, v.TRANSPORTER,
+v.OTHERGEAR, v.STATUS, v.VYEAR, v.REGISTRATION_TYPE, v.SALMONTROLL_REG, v.SALMONTROLL_DATE, v.SALMONREG_AREA, v.PERMIT_SERIAL1, v.PERMIT_SERIAL2, v.LASTUPDATED, v.ISNEW,
+(case when v.TENDER_PACKER = 'X' then  '88 ' end) || (case when v.FISHINGBOAT = 'X' then '92 ' end)
+|| (case when v.CHARTERBOAT = 'X' then '89 ' end) || (case when v.TRANSPORTER = 'X' then '91 ' end) || (case when v.FREEZER_CANNER = 'X' then '87 ' end)
+as acts,
+(case when v.PURSESEINE = 'X' then '01 ' end) || (case when v.BEACHSEINE = 'X' then '02 ' end) || (case when v.DRIFTGILLNET = 'X' then '03 ' end) || (case when v.SETGILLNET = 'X' then '04 ' end)
+|| (case when v.HANDTROLL = 'X' then '05 ' end) || (case when v.LONGLINE = 'X' then '06 ' end) || (case when v.SINGLEOTTERTRAWL = 'X' then '07 ' end) || (case when v.FISHWHEEL = 'X' then '08 ' end)
+|| (case when v.POTGEAR = 'X' then '09 ' end) || (case when v.RINGNET = 'X' then '10 ' end) || (case when v.DIVEGEAR = 'X' then '11 ' end) || (case when v.POWERTROLL = 'X' then '15 ' end)
+|| (case when v.BEAMTRAWL = 'X' then '17 ' end) || (case when v.DREDGE = 'X' then '22 ' end) || (case when v.DINGLEBAR = 'X' then '25 ' end) || (case when v.JIG = 'X' then '26 ' end)
+|| (case when v.DOUBLEOTTERTRAWL = 'X' then '27 ' end) || (case when v.HEARINGGILLNET = 'X' then '34 ' end) || (case when v.PAIRTRAWL = 'X' then '37 ' end) || (case when v.OTHERGEAR = 'X' then '99 ' end)
+as gears,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'vesselName') as nvname,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'grossTons') as ngrosstons,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'homeportCity') as nhomeportcity,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'engineType') as nenginetype,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'estValue') as nestvalue,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'hullId') as nhullid,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'holdCapacity') as nholdcapacity,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'salmonNetRegArea') as nsalmonnetarea,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'salmonPermit1') as nsalmonpermit1,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'salmonTrollReg') as nsalmontrollflag,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'netTons') as nnettons,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'homeportState') as nhomeportState,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'horsePower') as nhorsepower,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'fuelCapacity') as nfuelcapacity,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'liveCapacity') as nlivecapacity,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'refrigeration') as nrefrigeration,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'salmonPermit2') as nsalmonpermit2,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'transporterFlag') as ntransporterflag,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'salmonTrollDate') as nsalmontrolldate,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'tenderPacker') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'fishingBoat') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'charterBoat') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'freezerCanner')||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'transporter') as nacts,
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'purseSeine') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'beachSeine') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'driftGillNet') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'setGillNet') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'handTroll') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'longLine') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'singleOtterTrawl') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'fishWheel') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'potGear') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'ringNet') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'diveGear') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'powerTroll') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'beamTrawl') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'dredge') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'dingleBar') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'jig') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'doubleOtterTrawl') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'herringGillNet') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'pairTrawl') ||
+(select (case when count(*) > 0 then 'new' end) from arenew_changes c where c.confirmcode = v.confirmcode and c.object = v.adfg and c.attribute = 'otherGear') as ngears
+from arenew_vessels v
+where v.confirmcode = $P{cnum}]]>
+	</queryString>
+	<field name="ADFG" class="java.lang.String"/>
+	<field name="CFECID" class="java.lang.String"/>
+	<field name="CONFIRMCODE" class="java.lang.String"/>
+	<field name="RYEAR" class="java.lang.String"/>
+	<field name="NAME" class="java.lang.String"/>
+	<field name="REG_NUM" class="java.lang.String"/>
+	<field name="YEAR_BUILT" class="java.lang.String"/>
+	<field name="MAKE_MODEL" class="java.lang.String"/>
+	<field name="LENGTH" class="java.lang.String"/>
+	<field name="INCHES" class="java.lang.String"/>
+	<field name="FEE" class="java.lang.String"/>
+	<field name="GROSS_TONS" class="java.lang.String"/>
+	<field name="NET_TONS" class="java.lang.String"/>
+	<field name="HOMEPORT_CITY" class="java.lang.String"/>
+	<field name="ENGINE_TYPE" class="java.lang.String"/>
+	<field name="HORSEPOWER" class="java.lang.String"/>
+	<field name="EST_VALUE" class="java.lang.String"/>
+	<field name="HULL_TYPE" class="java.lang.String"/>
+	<field name="HULL_ID" class="java.lang.String"/>
+	<field name="FUEL" class="java.lang.String"/>
+	<field name="HOLD_TANK" class="java.lang.String"/>
+	<field name="LIVE_TANK" class="java.lang.String"/>
+	<field name="REFRIGERATION" class="java.lang.String"/>
+	<field name="RECEIVEDDATE" class="java.sql.Timestamp"/>
+	<field name="HOMEPORT_STATE" class="java.lang.String"/>
+	<field name="FOERIGN_FLAG" class="java.lang.String"/>
+	<field name="TRANSPORTER" class="java.lang.String"/>
+	<field name="OTHERGEAR" class="java.lang.String"/>
+	<field name="STATUS" class="java.lang.String"/>
+	<field name="VYEAR" class="java.lang.String"/>
+	<field name="REGISTRATION_TYPE" class="java.lang.String"/>
+	<field name="SALMONTROLL_REG" class="java.lang.String"/>
+	<field name="SALMONTROLL_DATE" class="java.lang.String"/>
+	<field name="SALMONREG_AREA" class="java.lang.String"/>
+	<field name="PERMIT_SERIAL1" class="java.lang.String"/>
+	<field name="PERMIT_SERIAL2" class="java.lang.String"/>
+	<field name="LASTUPDATED" class="java.sql.Timestamp"/>
+	<field name="ISNEW" class="java.lang.String"/>
+	<field name="ACTS" class="java.lang.String"/>
+	<field name="GEARS" class="java.lang.String"/>
+	<field name="NVNAME" class="java.lang.String"/>
+	<field name="NGROSSTONS" class="java.lang.String"/>
+	<field name="NHOMEPORTCITY" class="java.lang.String"/>
+	<field name="NENGINETYPE" class="java.lang.String"/>
+	<field name="NESTVALUE" class="java.lang.String"/>
+	<field name="NHULLID" class="java.lang.String"/>
+	<field name="NHOLDCAPACITY" class="java.lang.String"/>
+	<field name="NSALMONNETAREA" class="java.lang.String"/>
+	<field name="NSALMONPERMIT1" class="java.lang.String"/>
+	<field name="NSALMONTROLLFLAG" class="java.lang.String"/>
+	<field name="NNETTONS" class="java.lang.String"/>
+	<field name="NHOMEPORTSTATE" class="java.lang.String"/>
+	<field name="NHORSEPOWER" class="java.lang.String"/>
+	<field name="NFUELCAPACITY" class="java.lang.String"/>
+	<field name="NLIVECAPACITY" class="java.lang.String"/>
+	<field name="NREFRIGERATION" class="java.lang.String"/>
+	<field name="NSALMONPERMIT2" class="java.lang.String"/>
+	<field name="NTRANSPORTERFLAG" class="java.lang.String"/>
+	<field name="NSALMONTROLLDATE" class="java.lang.String"/>
+	<field name="NACTS" class="java.lang.String"/>
+	<field name="NGEARS" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="40" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[<font color='blue'>VESSEL</font>]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="73" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[ADFG:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="107" y="0" width="40" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ADFG}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="298" y="0" width="36" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Length:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="336" y="0" width="23" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{LENGTH} + "'"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="151" y="0" width="31" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="184" y="0" width="110" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NVNAME} != null ? "<b><u>"+$F{NAME}.toUpperCase()+"</u></b>" : $F{NAME}.toUpperCase())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="385" y="0" width="39" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Foreign:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="426" y="0" width="15" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FOERIGN_FLAG}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="445" y="0" width="48" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Year Built:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="495" y="0" width="30" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{YEAR_BUILT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="529" y="0" width="23" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Fee:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="554" y="0" width="30" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FEE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="13" width="29" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[CG#:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="31" y="13" width="64" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{REG_NUM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="99" y="13" width="30" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Make:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="131" y="13" width="95" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{MAKE_MODEL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="229" y="13" width="32" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Gross:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="262" y="13" width="30" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NGROSSTONS} != null ? "<b><u>"+$F{GROSS_TONS}+"</u></b>" : $F{GROSS_TONS} == "0" ? "N/A" : $F{GROSS_TONS} == null ? "N/A" : $F{GROSS_TONS})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="295" y="13" width="20" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Net:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="316" y="13" width="30" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NNETTONS} != null ? "<b><u>"+$F{NET_TONS}+"</u></b>" : $F{NET_TONS} == "0" ? "N/A" : $F{NET_TONS} == null ? "N/A" : $F{NET_TONS})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="349" y="13" width="23" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[City:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="373" y="13" width="82" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NHOMEPORTCITY} != null ? "<b><u>"+$F{HOMEPORT_CITY}.toUpperCase()+"</u></b>" : $F{HOMEPORT_CITY}.toUpperCase())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="460" y="13" width="29" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[State:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="491" y="13" width="20" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NHOMEPORTSTATE} != null ? "<b><u>"+$F{HOMEPORT_STATE}.toUpperCase()+"</u></b>" : $F{HOMEPORT_STATE}.toUpperCase())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="517" y="13" width="38" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Engine:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="557" y="13" width="20" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NENGINETYPE} != null ? "<b><u>"+$F{ENGINE_TYPE}.toUpperCase()+"</u></b>" : $F{ENGINE_TYPE} == null ? "N/A" : $F{ENGINE_TYPE}.toUpperCase())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="26" width="17" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[HP:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="18" y="26" width="31" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NHORSEPOWER} != null ? "<b><u>"+$F{HORSEPOWER}+"</u></b>" : $F{HORSEPOWER} == "0" ? "N/A" : $F{HORSEPOWER} == null ? "N/A" : $F{HORSEPOWER})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="178" y="26" width="31" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Value:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="26" width="61" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NESTVALUE} != null ? "<b><u>"+$F{EST_VALUE}+"</u></b>" : $F{EST_VALUE} == "0" ? "N/A" : $F{EST_VALUE} == null ? "N/A" : $F{EST_VALUE})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="275" y="26" width="22" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Hull:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="299" y="26" width="19" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{HULL_TYPE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="322" y="26" width="21" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[HID:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="344" y="26" width="75" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NHULLID} != null ? "<b><u>"+$F{HULL_ID}+"</u></b>" : $F{HULL_ID})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="425" y="26" width="21" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Ref:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="448" y="26" width="22" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NREFRIGERATION} != null ? "<b><u>"+$F{REFRIGERATION}.toUpperCase()+"</u></b>" : $F{REFRIGERATION} == null ? "N/A" : $F{REFRIGERATION}.toUpperCase())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="473" y="26" width="25" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Troll:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="500" y="26" width="60" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NSALMONTROLLDATE} != null ? "<b><u>"+$F{SALMONTROLL_DATE}+"</u></b>" : $F{SALMONTROLL_DATE} == null ? "N/A" : $F{SALMONTROLL_DATE})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="39" width="25" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Area:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="26" y="39" width="20" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NSALMONNETAREA} != null ? "<b><u>"+$F{SALMONREG_AREA}.toUpperCase()+"</u></b>" : $F{SALMONREG_AREA}.toUpperCase())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="174" y="39" width="24" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Fuel:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="26" width="24" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Live:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="26" width="35" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NLIVECAPACITY} != null ? "<b><u>"+$F{LIVE_TANK}+"</u></b>" : $F{LIVE_TANK} == "0" ? "N/A" : $F{LIVE_TANK} == null ? "N/A" : $F{LIVE_TANK})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="140" y="26" width="35" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NHOLDCAPACITY} != null ? "<b><u>"+$F{HOLD_TANK}+"</u></b>" : $F{HOLD_TANK} == "0" ? "N/A" : $F{HOLD_TANK} == null ? "N/A" : $F{HOLD_TANK})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="115" y="26" width="24" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Hold:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="238" y="39" width="25" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Acts:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="263" y="39" width="60" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{ACTS} == null && $F{NACTS} == null ? "N/A" : $F{ACTS} == null && $F{NACTS} != null ? "<b><u>N/A</u></b>" : $F{NACTS} != null ? "<b><u>"+$F{ACTS}+"</u></b>" : $F{ACTS})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="325" y="39" width="33" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Gears:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="359" y="39" width="250" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{GEARS} == null && $F{NGEARS} == null ? "N/A" : $F{GEARS} == null && $F{NGEARS} != null ? "<b><u>N/A</u></b>" : $F{NGEARS} != null ? "<b><u>"+$F{GEARS}+"</u></b>" : $F{GEARS})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="198" y="39" width="37" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NFUELCAPACITY} != null ? "<b><u>"+$F{FUEL}+"</u></b>" : $F{FUEL} == "0" ? "N/A" : $F{FUEL} == null ? "N/A" : $F{FUEL})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="359" y="0" width="23" height="11">
+					<printWhenExpression><![CDATA[$F{INCHES} != "0"]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{INCHES} != null ? $F{INCHES} + "\"" : "0\"")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="562" y="26" width="25" height="11"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NSALMONTROLLFLAG} != null ? "<b><u>"+$F{SALMONTROLL_REG}.toUpperCase()+"</u></b>" : $F{SALMONTROLL_REG}.toUpperCase())]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="49" y="39" width="55" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NSALMONPERMIT1} != null ? "<b><u>"+$F{PERMIT_SERIAL1}+"</u></b>" : $F{PERMIT_SERIAL1} == null ? "N/A" : $F{PERMIT_SERIAL1})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="116" y="39" width="55" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{NSALMONPERMIT2} != null ? "<b><u>"+$F{PERMIT_SERIAL2}+"</u></b>" : $F{PERMIT_SERIAL2} == null ? "N/A" : $F{PERMIT_SERIAL2})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="105" y="39" width="10" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="41" y="0" width="25" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{RYEAR}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="2" y="0" width="607" height="50" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="cnum">
+					<subreportParameterExpression><![CDATA[$P{cnum}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="adfg">
+					<subreportParameterExpression><![CDATA[$F{ADFG}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "sformVesselSubExtra.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

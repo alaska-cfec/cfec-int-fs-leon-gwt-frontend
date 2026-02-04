@@ -1,0 +1,15 @@
+mvn install:install-file -Dfile=ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.4 -Dpackaging=jar
+
+mvn install:install-file -Dfile=ostermillerutils.jar -DgroupId=com.Ostermiller -DartifactId=ostermillerutils -Dversion=1.04.03 -Dpackaging=jar
+
+mvn install:install-file -Dfile=gilead-core.jar -DgroupId=net.sf.gilead -DartifactId=gilead-core -Dversion=1.3.2 -Dpackaging=jar
+
+mvn install:install-file -Dfile=gilead4gwt_NoGoogle.jar -DgroupId=net.sf.gilead -DartifactId=gilead4gwt_NoGoogle  -Dversion=1.3.2 -Dpackaging=jar
+
+mvn install:install-file -Dfile=jboss-serialization.jar -DgroupId=jboss -DartifactId=jboss-serialization  -Dversion=1.0.3.GA -Dpackaging=jar
+
+mvn install:install-file -Dfile=jboss-jpa-deployers.jar -DgroupId=org.jboss.jpa -DartifactId=jboss-jpa-deployers  -Dversion=1.0.0-CR1 -Dpackaging=jar
+
+mvn install:install-file -Dfile=gxt.jar -DgroupId=com.extjs -DartifactId=gxt  -Dversion=2.2.5-gwt22 -Dpackaging=jar
+
+mvn install:install-file -Dfile=gilead-hibernate.jar -DgroupId=net.sf.gilead -DartifactId=gilead-hibernate -Dversion=1.3.2 -Dpackaging=jar

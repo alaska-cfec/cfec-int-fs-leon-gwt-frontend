@@ -1,0 +1,15 @@
+Deployment.
+All of the necessary libraries (exceptions later) are included in the application under the directory called libs. Simply include them in the
+build path. The two exceptions that must come locally are your JDK and GWT libraries. Go to your buildpath and be sure to edit them to point
+to your local versions. After the application has been successfully compiled, simply copy the contents of the war directory to a folder on
+the j2ee application server within the deployment directory. That folder will become the name by which the app is served.
+
+This project requires the installation of the Google Web Kit plugin for Eclipse. Simple instructions are readily available on there website.
+Currently, we are using the 2.0.1 version, but anything in the 2.x should work.
+
+These instuctions for deployment are based on the Tomcat j2ee container server, which uses a hot-deploy directory within it's root deployment directory. 
+The simple creation of a folder, even with no content, will activate deployment of a project with the same name as
+its folder. Within that folder is where you want to copy the contents of the compiled war directory. There are several automated methods for 
+deployment, but at there base is the same simple concept. Another option would be to archive the entire project as a war file, then simply copy
+that war file to the deployment directory and it will automatically explode are create all the necessary file structuers. While Tomcat is our
+prefered j2ee server, the application should be compliant with most others.

@@ -1,0 +1,133 @@
+name: CI – Build & Release
+
+on:
+  #  push:
+  #    branches: [ dev ]
+  #    tags:
+  #      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write   # needed to create releases
+
+    steps:
+      - name: Checkout dev branch
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+          fetch-depth: 50
+
+      - name: Show last 5 commits on the checked-out branch
+        run: |
+          echo "== Git context =="
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Checked-out branch: $(git rev-parse --abbrev-ref HEAD)"
+          echo
+          echo "== Last 5 commits =="
+          git --no-pager log -n 5 --date=iso \
+            --pretty=format:'%C(yellow)%h%Creset %Cgreen%ad%Creset %C(cyan)%an%Creset %C(bold)%d%Creset %s'
+          echo
+
+      # Create a date-based version like 20250616.1 (UTC date + run number)
+      - name: Compute version
+        id: ver
+        run: |
+          DATE=$(date -u +%Y%m%d)
+          echo "tag=${DATE}.${GITHUB_RUN_NUMBER}" >> $GITHUB_OUTPUT
+          echo "date=${DATE}" >> $GITHUB_OUTPUT
+
+      # Set up Java + Maven cache
+      - name: Set up Java (Temurin 17) and configure Maven server
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
+      - name: Install local JARs into Maven repo
+        run: |
+          mvn install:install-file -Dfile="old-jars/jboss-serialization-1.0.3.GA.jar" \
+            -DgroupId="jboss" -DartifactId=jboss-serialization -Dversion="1.0.3.GA" -Dpackaging=jar -DgeneratePom=true
+          mvn install:install-file -Dfile="old-jars/jboss-jpa-deployers-1.0.0-CR1.jar" \
+            -DgroupId="org.jboss.jpa" -DartifactId=jboss-jpa-deployers -Dversion="1.0.0-CR1" -Dpackaging=jar -DgeneratePom=true
+          mvn install:install-file -Dfile="old-jars/gxt-gpl-2.3.1a18-gwt210.jar" \
+            -DgroupId="com.extjs" -DartifactId=gxt-gpl -Dversion="2.3.1a18-gwt210" -Dpackaging=jar -DgeneratePom=true
+          mvn install:install-file -Dfile="old-jars/pvjdbc2-9.52.jar" \
+            -DgroupId="com.pervasive" -DartifactId=pvjdbc2 -Dversion="9.52" -Dpackaging=jar -DgeneratePom=true
+          mvn install:install-file -Dfile="old-jars/configcli-9.52.jar" \
+            -DgroupId="com.pervasive" -DartifactId=configcli -Dversion="9.52" -Dpackaging=jar -DgeneratePom=true
+          mvn install:install-file -Dfile="old-jars/javadti-9.52.jar" \
+            -DgroupId="com.pervasive" -DartifactId=javadti -Dversion="9.52" -Dpackaging=jar -DgeneratePom=true
+          mvn install:install-file -Dfile="old-jars/jpscs-9.52.jar" \
+            -DgroupId="com.pervasive" -DartifactId=jpscs -Dversion="9.52" -Dpackaging=jar -DgeneratePom=true
+          mvn install:install-file -Dfile="old-jars/monitorcli-9.52.jar" \
+            -DgroupId="com.pervasive" -DartifactId=monitorcli -Dversion="9.52" -Dpackaging=jar -DgeneratePom=true
+          mvn install:install-file -Dfile="old-jars/psql-9.52.jar" \
+            -DgroupId="com.pervasive" -DartifactId=psql -Dversion="9.52" -Dpackaging=jar -DgeneratePom=true
+          mvn install:install-file -Dfile="old-jars/pvjdbc2x-9.52.jar" \
+            -DgroupId="com.pervasive" -DartifactId=pvjdbc2x -Dversion="9.52" -Dpackaging=jar -DgeneratePom=true
+          mvn install:install-file -Dfile="old-jars/startup-9.52.jar" \
+            -DgroupId="com.pervasive" -DartifactId=startup -Dversion="9.52" -Dpackaging=jar -DgeneratePom=true
+          mvn install:install-file -Dfile="old-jars/ostermillerutils-1.04.03.jar" \
+            -DgroupId="com.Ostermiller" -DartifactId=ostermillerutils -Dversion="1.04.03" -Dpackaging=jar -DgeneratePom=true
+
+      - name: Build (Maven)
+        run: mvn -B -ntp clean package
+
+      # Find the war; your POM sets
+      #    <artifactId>leon</artifactId>
+      #    <packaging>war</packaging>
+      #    <version>2023-10-02</version>
+      - name: Locate war
+        id: war
+        run: |
+          # Prefer target/leon-2023-10-02.war; otherwise pick the largest war in target
+          if [[ -f target/leon-2023-10-02.war ]]; then
+            echo "file=target/leon-2023-10-02.war" >> $GITHUB_OUTPUT
+          else
+            WAR=$(ls -1S target/*.war | head -n1)
+            echo "file=$WAR" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Prepare versioned artifacts
+        id: prep
+        run: |
+          TAG="${{ steps.ver.outputs.tag }}"
+          SRC="${{ steps.war.outputs.file }}"
+          mkdir -p dist
+          BASENAME="leon-${TAG}.war"
+          cp "$SRC" "dist/${BASENAME}"
+          echo "file=dist/${BASENAME}" >> $GITHUB_OUTPUT
+
+      - name: Generate checksums
+        run: |
+          sha256sum "${{ steps.prep.outputs.file }}" | tee "${{ steps.prep.outputs.file }}.sha256"
+          sha512sum "${{ steps.prep.outputs.file }}" | tee "${{ steps.prep.outputs.file }}.sha512"
+
+      - name: Upload workflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: leon-${{ steps.ver.outputs.tag }}
+          path: |
+            ${{ steps.prep.outputs.file }}
+            ${{ steps.prep.outputs.file }}.sha256
+            ${{ steps.prep.outputs.file }}.sha512
+
+      - name: Create GitHub Release (first‑party GH CLI)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.ver.outputs.tag }}"
+          TARGET="${{ github.sha }}"  # the commit your workflow built
+          gh release create "$TAG" \
+            --title "$TAG" \
+            --generate-notes \
+            --target "$TARGET"
+          gh release upload "$TAG" \
+            "${{ steps.prep.outputs.file }}" \
+            "${{ steps.prep.outputs.file }}.sha256" \
+            "${{ steps.prep.outputs.file }}.sha512"

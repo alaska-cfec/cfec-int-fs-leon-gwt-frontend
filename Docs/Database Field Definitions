@@ -1,0 +1,239 @@
+As of 02/2011
+
+ARENEW_ENTITY
+This table contains records for people with valid CFECID numbers and are unique on an annual basis. New entries are created after
+the first record(s) for any given year are created. Limited modification can occur afterwards.
+CFECID				-		The permit holder/vessel owners unique and valid CFECID (6 numeric digits)
+POVERTY				-		Indicating compliance and acceptance of CFEC's reduced fee policy (true or false)
+RESIDENCY			-		Indicating Alaska resident or not (R or N)
+CITIZEN				-		Indicating U.S. citizenship (true or false)
+PADDRESS			-		Permanent Address
+PCITY				-		Permanent City
+PSTATE				-		Permanent State
+PZIP				-		Permanent Zipcode (5 numeric digits)
+YEARS				-		Number of years of residency, if applicable
+MONTHS				-		Number of months of residency, if applicable
+AREA				-		Area Code of phone number - optional (3 numeric digits)
+PHONE				-		Phone Number - optional (7 numeric digits)
+EMAIL				-		Email address - optional
+TADDRESSS			-		Temporary Address
+TCITY				-		Temporary City
+TSTATE				-		Temporary State
+TZIP				-		Temporary Zipcode
+ALIENREG			-		Alien Registration Number, present ONLY if non-U.S. citizen has been selected
+RYEAR				-		Renewal Year. Along with the CFECID, these make the records unique
+REDUCED HALIBUT		-		Indicates the permit holder has selected the reduced halibut box (true or false)
+REDUCED SABLEFISH	-		Indicates the permit holder has selected the reduced sablefish box (true or false)
+MSNAREA				-		If present, indicates a specific salmon area to be fished if permit holder has mulitple salmon permits (Single alpha character)
+XNAME				-		The persons full name
+AGENT				-		Name of persons agent (N/A or actual name)
+DIFFERENTIALC		-		Indicates if person has already paid the out of state differential fee (true or false)
+AGENTSUB			-		Indicates if a person has specified an agent or not (no or yes)
+DIFFAMOUNT			-		Indicates the acutal amount, if any, of the differential paid this particular ryear
+CREATEDATE			-		Date this record was created
+DIFFERENTIALP		-		NO USED
+UPDATEDATE			-		Date this record was last updated
+PCOUNTRY			-		Permanent Country
+TCOUNTRY			-		Temporary Country
+NOTES				-		A notes field.
+RADDRESS			-		Residential Address
+RCITY				-		Residential City
+RSTATE				-		Residential State
+RZIP				-		Residential Zipcode
+RCOUNTRY			-		Not used
+RADDRESS2			-		Residential Foreign Address
+PADDRESS2			-		Permanent Foreign Address
+TADDRESS2			-		Temporary Foreign Address
+COMPANY				-		Boolean column denoting entity type (Person or Company)
+
+ARENEW_PAYMENTS
+This table contains the billing and payment records for CFECID. Multiple transactions for a valid CFECID can occur and are made unqiue by the
+confirmation number automatically assigned during record creation and by renewal year.
+CFECID				-		The permit holder/vessel owners unique and valid CFECID (6 numeric digits)
+BADDRESS			-		Billing Address
+BCOPY				-		Billing City
+BSTATE				-		Billing State
+BZIP				-		Billing Zipcode
+CONFIRMCODE			-		Unique confirmation code assigned to this transaction
+CCNUMBER			-		Credit Card Number
+CCNAME				-		Name as it appears on Credit Card
+CCMONTH				-		Credit Card expiration Month
+CCYEAR				-		Credit Card expiration Year
+CURTX				-		Incrementing transaction number, starting with 01
+RYEAR				-		Renewal Year
+RECEIVEDDATE		-		Date this record was created
+CCTYPE				-		Credit Card type (vi, mc or di)
+INDICATOR			-		NO LONGER USED
+TOTALAMOUNT			-		Total Amount for this transaction
+CCSEC				-		Credit Card 3 digit security number
+SHIPTYPE			-		Shipping type for card (fm, em or pm) Firstclass Mail, Express Mail or Priority Mail
+BCOUNTRY			-		Billing Country
+BADDRESS2			-		Billing Foreign Address
+NOTES				-		Notes field used in tracking application to denote specifics about individual transaction.
+RJNUMBER			-		Contains the RJ Number of this transactions (not currently being used)
+REVOPERATOR			-		6 character code for operator assigned to do revenue
+PRNOPERATOR			-		6 character code for operator assigned to print cards (not currently being used)
+REVDATE				-		Date revenue was completed
+PRNDATE				-		Date printing was completed (not currently being used)
+DATAENTRY			-		Not currently being used
+CCOWNER				-		Type of entity who owns credit card (Person or Company, not current being used)
+
+ARENEW_PERMITS
+This table contains the permit records for individual transactions. Multiple permit records can be assigned to individual transaction specified by the
+confirmation number assigned during record creation. Each permit record not only has its transaction back to payments, but obvisouly a CFECID for 
+individual identification back to entity.
+CFECID				-		The permit holder/vessel owners unique and valid CFECID (6 numeric digits)
+RYEAR				-		Renewal Year
+FISHERY				-		Fishery Code
+SERIAL				-		Permit Serial Number
+ADFG				-		ADFG number assigned to this permit
+FEE					-		The actual fee paid for this particular permit
+INTENDS				-		Indicates intent to fish for renewal year (true or false)
+MSNA				-		A group number assigned to make it easier for me to determine MSNA requirements.
+RECEIVEDDATE		-		Date this record was created
+CONFIRMCODE			-		Confirmation Code assigned to this transaction
+DESCRIPTION			-		Fishery description
+STATUS				-		Current status of permit processing (Pending, Completed, Rejected or Available)
+PYEAR				-		Acutal Permit Year (in case of past un-paid permits)
+LASTUPDATED			-		Date record was last updated
+NOINTEND			-		Development field only used to make my life easier
+NOTES				-		Notes field for Permits
+MPMT				-		Boolean column denoting multiple permits of same type fishery in same year
+
+ARENEW_VESSELS
+This table contains the vessel records for individual transactions. Multiple vessel records can be assigned to individual transactions specified by the
+confirmation number assigned during record creating. Each vessel record not only has its transaction back to payments, but obviously a CFECID for
+individual identification back to entity.
+CFECID				-		The permit holder/vessel owners unique and valid CFECID (6 numeric digits)
+CONFIRMCODE			-		Confirmation Code assigned to this transaction
+RYEAR				-		Renewal Year
+ADFG				-		Vessel ADFG Number
+NAME				-		Vessel Name
+REG_NUM				-		Coast Guard Number, now refered to as the Alaska State Registration Number
+YEAR_BUILT			-		Year Vessel was constructed
+MAKE_MODEL			-		Make and Model of Vessel
+LENGHT				-		Length of Vessel in feet
+FEE					-		Acutal fee paid for this particular Vessel
+GROSS_TONS			-		Gross tonage of this Vessel
+NET_TONS			-		Net tonage of this Vessel
+HOMEPORT_CITY		-		Homeport City for this Vessel
+ENGINE_TYPE			-		Indicates engine type (G or D) Gas or Diesel
+HORSEPOWER			-		Vessel horsepower
+EST_VALUE			-		The estimated value of Vessel
+HULL_TYPE			-		Indicates hull material type (A, F, W, S or C) Fiberglass, Alumimun, Wood, Steel or Composite
+HULL_ID				-		Vessel hull identification number
+FUEL				-		Fuel tank capacity
+HOLD_TANK			-		Hold tank capacity
+LIVE_TANK			-		Live tank capacity
+REFRIGERATION		-		Indicates refrigeration capability (Y or N)
+FREEZER_CANNER		-		Indicates if Vessel is a freezer/canner (Y or N)
+TENDER_PACKER		-		Indicates if Vessel is a tender/packer (Y or N)
+CHARTERBOAT			-		Indicates if Vessel is registered as a charterboat (Y or N)
+FISHINGBOAT			-		Indicates if Vessel if registered for commerical fishing activities (X or n) yes or no
+PURSESEINE			-		Indicates gear code for Purse Seine (X or n/N)
+BEACHSEINE			-		Indicates gear code for Beach Seine (X or n/N)
+DRIFTGILLNET		-		Indicates gear code for Drift Gillnet (X or n/N)
+SETGILLNET			-		Indicates gear code for Set Gillnet (X or n/N)
+HANDTROLL			-		Indicates gear code for Hand Trolling (X or n/N)
+LONGLINE			-		Indicates gear code for Long Lining (X or n/N)
+SINGLEOTTERTRAWL	-		Indicates gear code for Single Otter Trawl (X or n/N)
+FISHWHEEL			-		Indicates gear code for Fish Wheel (X or n/N)
+POTGEAR				-		Indicates gear code for Pot Gear (X or n/N)
+RINGNET				-		Indicates gear code for Ring Net (X or n/N)
+DIVEGEAR			-		Indicates gear code for Dive Gear (X or n/N)
+POWERTROLL			-		Indicates gear code for Power Trolling (X or n/N)
+BEAMTRAWL			-		Indicates gear code for Beam Trawl (X or n/N)
+DREDGE				-		Indicates gear code for Dredge (X or n/N)
+JIG					-		Indicates gear code for Jig (X or n/N)
+DOUBLEOTTERTRAWL	-		Indicates gear code for Double Otter Trawl (X or n/N)
+HEARINGGILLNET		-		Indicates gear code for Hearing Gillnet (X or n/N)
+PAIRTRAWL			-		Indicates gear code for Pair Trawl (X or n/N)
+RECEIVEDDATE		-		Date this record was created
+HOMEPORT_STATE		-		Homeport State for this Vessel
+FOREIGN_FLAG		-		Indicates if Vessel if of foreign ownership (N or blank) where blank indicates yes
+TRANSPORTER			-		Indicates if Vessel is a transporter (X or n/N) where X is yes
+OTHERGEAR			-		Indicates gear code for Other gear (X or n/N)
+STATUS				-		Current status of record processing (Pending, Completed, Rejected or Available)
+OPERATOR			-		Not Used
+VYEAR				-		Actual Vessel Year
+REGISTRATION_TYPE	-		Not Used
+SALMONTROLL_REG		-		Specify area or N/A
+SALMONTROLL_DATE	-		Self explanitory
+SALMONREG_AREA		-		Salmon Area or N/A
+PERMIT_SERIAL1		-		First Permit assigned
+PERMIT_SERIAL2		-		Second Permit assigned
+LASTUPDATED			-		Date record was last updated
+Q1					-		Answer to question 1
+Q2					-		Answer to question 2
+Q3					-		Answer to question 3
+Q4					-		Answer to question 4
+Q5					-		Answer to question 5
+Q6					-		Answer to question 6
+Q7					-		Answer to question 7
+Q8					-		Answer to question 8
+Q9					-		Answer to question 9
+Q10					-		Answer to question 10
+Q11					-		Answer to question 11
+ISNEW				-		Boolean column denoting if vessel is new this year
+INCHES				-		Leftover inches for vessel length.
+
+ARENEW_CHANGES
+This table records changes that have been made to fields which are editable. Like the Permits and Vessels above, each record is associated with a unique
+transacation or confirmation number and specifies individuals by the CFECID.
+SEQ					-		Incrementing sequence number for multiple changes within a single transaction
+CFECID				-		The permit holder/vessel owners unique and valid CFECID (6 numeric digits)
+TYPE				-		Indicates what section in LEON is being altered (Person, Billing, Permits, Vessels)
+ATTRIBUTE			-		Indicates the actual field being altered
+OLDVALUE			-		Specifies the original value of the field
+NEWVALUE			-		Specified the new value of the field
+CONFIRMCODE			-		Confirmation Code assigned to this transaction
+UPDATEDATE			-		Date record was updated
+RYEAR				-		Renewal Year
+OBJECT				-		Specifies additional information about I may need about associated field data, such as name, serial, fishery, etc.
+
+ARENEW_USERTABLE
+This table contains user specific information for the LEON Tracking application.
+USERNAME			-		6 character code for each user
+FIRSTNAME			-		User firstname
+LASTNAME			-		User lastname
+ROLE				-		User role (clerk, admin, IT)
+DEPARTMENT			-		User department
+QUEUE				-		User print queue name
+PASSWORD			-		User password
+
+There are other more periphial tables that are used in LEON as well, some are views for lookups. Here they are with brief functionality.
+
+The RNW_* tables contain all records, not just those that participate in LEON.
+RNW_ENTITY
+This table is similar to the ARENEW_ENITTY table, but contains all records for current year for all permit holders or vessel owners. This is actually 
+the master table that I use to query for changes in permit/vessel status. Don creates and upates this file twice a day, and rewrites it completely once 
+a week. The fields are self identifying. When someone logs into Leon for the first time, this is where I can initially get their information and populate 
+the screens. After a record is created, that data then gets recorded in the various ARENEW_* tables.
+
+RNW_PMT
+This table is similar to the ARENEW_PERMITS table, but contains all permit records. There are two fields in this file that I update. The renewal_status 
+field is Available by default, I set it to Pending after a transaction occurs for the permit. When the processing is complete in licensing, Don will 
+set this flag to Completed. I also add the confirmation_code to the record and Don maintains it throughout its existence.
+
+RNW_VES
+This table is similar to the ARENEW_VESSELS table, but contains all vessel records. Ther are two fields in this file that I update. The renewal_status 
+field is Available by default, I set it to Pending after a transaction occurs for the vessel. WHen the processing is complete in licensing, Don will 
+set this flag to Completed. I also add the confirmation_code to the record and Don maintains it throughout its existence.
+
+RENEW_FISHERY
+This is a view to the fishery table that I use when people want to purchase a new Permit. It contains the following fields:
+FISHERY				-		Fishery Code
+RESFEE				-		Resident Fee
+NONRESFEE			-		Non Resident Fee
+RESPOVERTYFEE		-		Resident Poverty Fee
+NONRESPOVERTYFEE	-		Non Resident Poverty Fee
+DESCRIPTION			-		Fishery Description
+STATUS				-		Fishery availability (Y or N)
+
+
+
+
+
+
+
+

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ccreceiptSub" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="17" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="14"/>
+	<property name="ireport.y" value="198"/>
+	<parameter name="ctype" class="java.lang.String"/>
+	<parameter name="cnum" class="java.lang.String"/>
+	<parameter name="cexp" class="java.lang.String"/>
+	<parameter name="sdate" class="java.lang.String"/>
+	<parameter name="stime" class="java.lang.String"/>
+	<parameter name="samount" class="java.lang.String"/>
+	<parameter name="sapproved" class="java.lang.String"/>
+	<parameter name="clerk" class="java.lang.String"/>
+	<parameter name="comment" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="352" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="142" y="89" width="147" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{ctype}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="89" width="114" height="15"/>
+				<textElement/>
+				<text><![CDATA[CARD TYPE ................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="104" width="114" height="15"/>
+				<textElement/>
+				<text><![CDATA[CARD NUMBER ..........:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="119" width="114" height="15"/>
+				<textElement/>
+				<text><![CDATA[CARD EXPIRATION ...:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="134" width="114" height="15"/>
+				<textElement/>
+				<text><![CDATA[SALE DATE ................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="149" width="114" height="15"/>
+				<textElement/>
+				<text><![CDATA[SALE TIME .................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="164" width="114" height="15"/>
+				<textElement/>
+				<text><![CDATA[SALE AMOUNT ..........:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="189" width="114" height="15"/>
+				<textElement/>
+				<text><![CDATA[SALE APPROVED ......:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="204" width="114" height="15"/>
+				<textElement/>
+				<text><![CDATA[CLERK .......................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="228" width="114" height="15"/>
+				<textElement/>
+				<text><![CDATA[COMMENT .................:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="243" width="114" height="15"/>
+				<textElement/>
+				<text><![CDATA[SALE DESCRIPTION]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="142" y="104" width="147" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{cnum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="119" width="147" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{cexp}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="142" y="134" width="147" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{sdate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm.ss a">
+				<reportElement x="142" y="149" width="147" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{stime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="164" width="147" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{samount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="189" width="147" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{sapproved}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="204" width="147" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{clerk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="228" width="147" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{comment}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="58" y="60" width="115" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[306724011454]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="58" y="46" width="115" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[(907) 789-6150]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="31" width="148" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Juneau, AK 99801-0302]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="58" y="16" width="115" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PO Box 11302]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="58" y="1" width="115" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[State of Alaska, CFEC]]></text>
+			</staticText>
+			<line>
+				<reportElement x="143" y="256" width="126" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="272" width="269" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="287" width="269" height="1"/>
+			</line>
+			<line>
+				<reportElement x="19" y="307" width="250" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="297" width="15" height="20"/>
+				<textElement/>
+				<text><![CDATA[X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="322" width="289" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[--------------------------- THANK YOU -------------------------]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

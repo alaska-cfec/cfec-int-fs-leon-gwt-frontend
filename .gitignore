@@ -1,0 +1,34 @@
+# Eclipse project files
+.metadata/
+bin/
+.settings/
+.classpath
+.project
+
+# Maven specific files
+target/
+
+# Generated .war files
+*.war
+
+#Generated war WEB-INF
+war/WEB-INF/classes
+
+# Exclude logs and temporary files
+logs/
+*.log
+*.tmp
+
+# Exclude IDE-specific files and directories
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Exclude system-specific files
+.DS_Store
+Thumbs.db
+
+#Exclude generaed class files
+src/main/webapp/WEB-INF/classes/*

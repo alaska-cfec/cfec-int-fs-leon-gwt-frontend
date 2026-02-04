@@ -1,0 +1,38 @@
+E&f1Y&f4X&l1S&a1G(10U(s0p14h0s3b4102T&l8E&a3L&f0S*p1493x-300YAAAAAA&f1S
+_____  _____  B 61B 10004           00001      HALIBUT, LONGLINE VL 60' OR OVER, STATEWIDE              *p2147X$1,050
+- I certify I hold IFQ & landed under 8,000lbs of halibut in 2022: ___YES      If yes, submit  *p2147X
+your total Halibut landing report from NOAA to receive the reduced fee of $75.00.            *p2147X
+- I certify I will be fishing halibut only for the following CDQ community: __________ pay $75 *p2147X
+_____  _____  C 61B 10003           00001      SABLEFISH, LONGLINE VL 60' OR OVER, STATEWIDE            *p2147X  $900
+- I certify I hold IFQ & landed under 9,000lbs of sablefish in 2022: __YES      If yes, submit *p2147X
+your total sablefish landing report from NOAA to receive the reduced fee of &75.00.          *p2147X
+_____  _____  M 91B 10008           00001      MISC FIN POT GE 60 STW                                   *p2147X  $975
+_____  _____* S 03E 10005           00001      SALMON, DRIFT GILLNET, PRINCE WILLIAM SOUND              *p2147X  $375
+_____  _____* S 03T 10006           00001      SALMON, DRIFT GILLNET, BRISTOL BAY                       *p2147X  $375
+*p450x618Y00001                Destresser                                          248539
+*p150x683Y1800                Tolly
+*p300x748Y  65         $120               65
+*p250x813Y    44               JUNEAU
+*p440x878YDiesel                 340
+*p300x943Y   $50,000                Wood
+*p450x1008Y
+*p290x1073Y  4,200                       1,400
+*p340x1138Y   1,350                       Y
+*p1802x755YX
+*p1491x805YX
+*p1130x854YX
+*p2105x854YX
+*p1408x1002YX
+*p1700x1132YK
+*p2107x1132Y10005
+*p2107x1182Y10006
+*p550x1393Y $3,825*p910X*p1220X   $0*p1520X   $120*p1810X  $3,945
+*p550x1448Y $3,825*p910X$190*p1220X   $0*p1520X   $120*p1810X  $4,135
+*p840x2230YAAAAAA
+*p300x2500Y&a15LCFEC Dummy Record
+8800-109 Glacier Hwy
+Juneau,  AK  99801
+   &f4Y&f4X(10U(s0p14h0s3b4102T&l8E&a3L&f0S*p1493x-300YAAAAAA&f1S
+_____  _____  S 15B 10007           00001      SALMON, POWER TROLL, STATEWIDE                           *p2147X  $150
+Note:  * Designate the ONE salmon net area you will fish in 2023: ______                       *p2147X
+ 

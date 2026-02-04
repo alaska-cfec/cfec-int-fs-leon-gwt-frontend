@@ -1,0 +1,15 @@
+mvn install:install-file -Dfile=pvjdbc2.jar -DgroupId=com.pervasive -DartifactId=pvjdbc2 -Dversion=9.52 -Dpackaging=jar
+
+mvn install:install-file -Dfile=configcli.jar -DgroupId=com.pervasive -DartifactId=configcli -Dversion=9.52 -Dpackaging=jar
+
+mvn install:install-file -Dfile=javadti.jar -DgroupId=com.pervasive -DartifactId=javadti -Dversion=9.52 -Dpackaging=jar
+
+mvn install:install-file -Dfile=jpscs.jar -DgroupId=com.pervasive -DartifactId=jpscs -Dversion=9.52 -Dpackaging=jar
+
+mvn install:install-file -Dfile=monitorcli.jar -DgroupId=com.pervasive -DartifactId=monitorcli -Dversion=9.52 -Dpackaging=jar
+
+mvn install:install-file -Dfile=psql.jar -DgroupId=com.pervasive -DartifactId=psql -Dversion=9.52 -Dpackaging=jar
+
+mvn install:install-file -Dfile=pvjdbc2x.jar -DgroupId=com.pervasive -DartifactId=pvjdbc2x -Dversion=9.52 -Dpackaging=jar
+
+mvn install:install-file -Dfile=startup.jar -DgroupId=com.pervasive -DartifactId=startup -Dversion=9.52 -Dpackaging=jar

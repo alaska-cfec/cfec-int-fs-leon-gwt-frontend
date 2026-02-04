@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='onlinerenewal'>
+  <!-- Inherit the core Web Toolkit stuff.                        -->
+  <inherits name='com.google.gwt.user.User'/>
+  <inherits name='com.extjs.gxt.ui.GXT'/>
+
+  <!-- Inherit the default GWT style sheet.  You can change       -->
+  <!-- the theme of your GWT application by uncommenting          -->
+  <!-- any one of the following lines.                            -->
+  <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+  <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
+  <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+
+  <!-- Other module inherits                                      -->
+  <inherits name="com.allen_sauer.gwt.log.gwt-log-INFO" />
+
+  <!-- Logging  -->
+  
+  <set-property name="log_DivLogger" value="DISABLED" />
+  <!-- <set-property name="log_RemoteLogger" value="ENABLED" /> -->
+  <inherits name='com.allen_sauer.gwt.log.gwt-log-RemoteLogger' /> 
+  <set-property name="log_WindowLogger" value="DISABLED" />
+  <set-property name="log_GWTLogger" value="DISABLED" />
+  <set-property name="log_FirebugLogger" value="DISABLED" />
+  <set-property name="log_SystemLogger" value="DISABLED" />
+  <set-property name="log_ConsoleLogger" value="DISABLED" />
+  <!--set-configuration-property name="log_pattern" value="%d [%-5p] %m%n" /-->
+  <set-configuration-property name="log_pattern" value="%m%n" />
+
+  <!-- Specify the app entry point class.                         -->
+  <entry-point class='com.cfecweb.leon.client.OnlineRenewal'/>
+  <servlet path="/getData" class="com.cfecweb.leon.server.getDataImpl"/>
+
+  <!-- Specify the paths for translatable code                    -->
+  <source path='dto'/>
+  <source path='client'/>
+  <source path='icons'/>
+
+</module>

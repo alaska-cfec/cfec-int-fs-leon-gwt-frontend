@@ -1,0 +1,62 @@
+The CFEC Online Renewal Application (LEON) has been running and active since 11/21/08, but I haven't kept very good recods of changes and updates.
+
+History.
+The app began as a pure Javascript client (ExtJS) with java beans on the server being accessed thru an ajax technology called DWR. An upgrade was
+performed with ExtJS 2.x offering gui enhancements, also switch to hibernate at that time. A rewrite was done in year 2 to include the GWT
+technology as it's base and using the new GXT library widget, which became version 2.0.0 in Novemeber of 2009.
+
+Logging.
+Both server and client logging are enabled in LEON, and are recorded in a rotating log file maintained on PO and accessed via NFS on all of
+the application servers. The particular directory for LEON is /webapps/logs/Leon20xx and the daily filename is called leon.out. Daily versions
+of this log file are appended with date and saved in the same directory.
+
+Administration.
+There is a built in admin screen with various functionality for displaying and editing LEON records. Accessing this functionality requires
+an initial code in lieu of the CFECID, then a username and password.
+
+Versioning.
+Version numbers are simple. Major release, feature update and minor bug fixes make up the first three sets of numbers, then append the current
+month and day and finally the year. The version number is maintained in the HeaderText class.
+
+Development Sandbox.
+The same principle of deployment applies here as well. I don't have branches of the application, but changes to be tested first are simply
+deployed to a different server using a different name (LeonDEV). Here I can test functionality live before rolling a new version. Also,
+with GWT 2.x, the ability to run applications in a development mode via the localhost is a great way to test and debug as well.
+
+TODO.
+1. Want to give admin functionality to re-print the customer receipt printout that is automatically generated when a new record is created. This
+printout is generated on a seperate machine by a SAS process, then sent to a Novell print queue. The records, a PDF file named by confirmation 
+number, are maintained locally on that machine which I do not yet have access to.
+2. Reports menu. Would also like to include a reports button in the admin screen with various reports available to build dynamically by either 
+passing variables are canned. These could then be downloaded as PDF's or Excel/CSV files.
+3. Clean up user screens. Much has changed in this requard over the evolution of the app, but user experience (outside of gross errors) still
+dominate credibility and willingness to come back. A continuing effort to reduce clutter without losing information, make screens cleaner and 
+more visually conducsive to household computers (resolution issues), easy to find and logical navigation and clarity/brevity of text always 
+needs to be considered. A complicated and form-driven process that ultimately appears to be easy and simple is the goal.
+4. Automatic credit card processing. Currently, billing information is taken, recorded and then later processed by a licensing agent. We do have the 
+ability to automate that portion of the process.
+5. Automatic entry of IEP's and new Vessels. This way, the licensing agent simply has to renew the new permit or vessel, and not actually enter it first.
+6. Fat client. A swing client that mimicks current administative functionality with added feature sets. I see this as a transition into a new licensing
+application.
+7. Logging the select/unselect changes in permit renewal and intent to fish. Sounds simple, but still needs some work. When the renweal box is selected 
+for a permit, the intent is NOT automatically checked. However, it is automcatically un-checked when the renewal box is un-selected. Vice-versa for 
+intents. This has created a problem in logging that I need to work out. Currently, logging could suggest that a permit is selected when it really 
+isn't. It's more complicated then it sounds.
+8. Add the GWT History stack and assign name tokens for all of the pages so browser history will work.
+9. Add distinct logging for Agent vs. Permit Holder actions.
+
+Future plans?
+1. Thought about adding a CFEC news ticker to the initial screen that would margue relevant CFEC news and updates. Would be pretty easy, could even
+include rss feeds from other agencies. The framework for the container is already stubed in, but commeted out.
+2. Push site into more of a portal where online management is a piece, but could include news/rss, forums, blogs, canned and custom reports, etc.
+
+Version History. 
+
+Version 2.3.1.0301.2010 - Current
+Changes include logging on form download request, collapsable content panels in the Address and Billing screens and a more regimented login
+requirement for access to the Forms screen (must be a valid CFECID number, even if they have not participated in LEON). Changed the regular 
+expression validator for Years and Months of Alaska residency to NOT allow someone to enter 0 for years. Years are now 1 - 99, Months are 0 -11.
+Changed the link to Public Lookups from /publook to /plook. Added GWT code splits to the new Permit and Vessel buttons, as well as the edit
+Vessel grid selection. Added RPC for session monitoring. If there is any time of in-activity that meets or exceeds 20 minutes, the application is
+automatically reset. Added an activity monitor progress bar to the southwestern region of the status bar. Fixed a coding error for fieldset headers
+and main login buttons. Updates some instruction text. Some minor cleanup, I.E. CSS fix, cosolidation and performance tuning.

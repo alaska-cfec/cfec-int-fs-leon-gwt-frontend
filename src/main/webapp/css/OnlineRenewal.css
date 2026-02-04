@@ -1,0 +1,217 @@
+/** Add css rules here for your application. */
+
+.statusBar {
+	text-align: center;	
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.topLeft {
+	background-color: #FFFFCC;	
+	margin-right: 8px;
+	margin-left: 8px;	
+}
+
+.topRight {
+	background-color: White;	
+	margin-right: 8px;
+	margin-left: 8px;	
+}
+
+.bottomLeft {
+	background-color: #FFFFCC;	
+	margin-right: 8px;
+	margin-left: 8px;	
+}
+
+.bottomRight {
+	background-color: White;	
+	margin-right: 8px;
+	margin-left: 8px;	
+}
+
+.header {
+	background-color: #FFFFCC;
+	padding-right: 5px;
+	padding-left: 5px;	
+}
+
+.mainTitle {
+	font-size: larger;
+	font-weight: bold;		
+}
+
+.bbar {	
+	padding-top: 0px;
+	padding-bottom: 5px;
+}
+
+.pbar {	
+	margin-right: auto;
+	margin-left: auto;	
+	padding-top: 5px;
+	padding-bottom: 8px;
+}
+
+.option1 {
+	padding-bottom: 5px;
+}
+
+.option2 {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.option3 {
+	padding-top: 5px;
+}
+
+.so {
+	margin-top: 20px;
+}
+
+.tableGrids .x-grid3-cell-inner {
+	white-space: normal;
+	.x-grid3-header-offset{width:auto;}	
+}
+
+.addressFormPanel {
+	background-color: White;	
+}
+
+.resdis {
+	padding-left: 3px;
+	padding-right: 3px;
+	background-color: #EEEEEE;
+}
+
+.addressFieldSets {
+	padding-bottom: 3px;
+	background-color: #EEEEEE;
+}
+
+.sameas {
+	color: green;	
+	padding-bottom: 4px;
+}
+
+.phonelab {
+	padding-top: 3px;
+	padding-right: 4px;			
+}
+
+.newpmt {
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+
+.newves {
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+
+.newvesHisForm {
+	background-color: White;	
+	margin-right: 5px;
+	margin-left: 5px;	
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+/** CSS table definition for changes in Billing screen **/
+#chgTable {
+	width: 90%;
+	margin-right: auto;
+	margin-left: auto;
+}
+#chgTable td {
+	text-align:center;
+	padding-bottom: 0px;
+	font: 12px Arial, Helvetica, Tahoma, sans-serif; color:black;
+}
+#chgTable th {
+	height: 20px;
+	text-decoration:underline;
+	text-align:center;
+	font: bold 12px Arial, Helvetica, Tahoma, sans-serif; color:black;
+}
+
+/** CSS table definition for permit list in review screen **/
+#pmtTable {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+#pmtTable td {
+	text-align:center;
+	padding-bottom: 0px;
+	font: 12px Arial, Helvetica, Tahoma, sans-serif; color:black;
+}
+#pmtTable th {
+	height: 20px;
+	text-decoration:underline;
+	text-align:center;
+	font: 12px Arial, Helvetica, Tahoma, sans-serif; color:blue;
+}
+
+/** CSS table definition for vessel list in review screen **/
+#vesTable {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+#vesTable td {
+	text-align:center;
+	padding-bottom: 0px;
+	font: 12px Arial, Helvetica, Tahoma, sans-serif; color:black;
+}
+#vesTable th {
+	height: 20px;
+	text-decoration:underline;
+	text-align:center;
+	font: 12px Arial, Helvetica, Tahoma, sans-serif; color:blue;
+}
+
+.boldblack10 { font: bold 10px Arial, Helvetica, Tahoma, sans-serif; color:black; }
+.regblack10 { font: 10px Arial, Helvetica, Tahoma, sans-serif; color:black; }
+.boldred10 { font: bold 10px Arial, Helvetica, Tahoma, sans-serif; color:red; }
+.regblue10 { font: 10px Arial, Helvetica, Tahoma, sans-serif; color:blue; }
+.regred10 { font: 10px Arial, Helvetica, Tahoma, sans-serif; color:red; }
+.regbrown10 { font: 10px Arial, Helvetica, Tahoma, sans-serif; color:brown; }
+.regorange10 { font: 10px Arial, Helvetica, Tahoma, sans-serif; color:orange; }
+.reggreen10 { font: 10px Arial, Helvetica, Tahoma, sans-serif; color:#009900; }
+
+.boldgreen12 { font: bold 12px Arial, Helvetica, Tahoma, sans-serif; color:#009900; }
+.boldblack12 { font: bold 12px Arial, Helvetica, Tahoma, sans-serif; color:black; }
+.boldred12 { font: bold 12px Arial, Helvetica, Tahoma, sans-serif; color:red; }
+.boldorange12 { font: bold 12px Arial, Helvetica, Tahoma, sans-serif; color:orange; }
+.regblack12 { font: 12px Arial, Helvetica, Tahoma, sans-serif; color:black; }
+.regred12 { font: 12px Arial, Helvetica, Tahoma, sans-serif; color:red; }
+.regorange12 { font: 12px Arial, Helvetica, Tahoma, sans-serif; color:orange; }
+.regblue12 { font: 12px Arial, Helvetica, Tahoma, sans-serif; color:blue; }
+.boldblue12 { font: bold 12px Arial, Helvetica, Tahoma, sans-serif; color:blue; }
+.reggreen12 { font: 12px Arial, Helvetica, Tahoma, sans-serif; color:#009900; }
+.regbrown12 { font: 12px Arial, Helvetica, Tahoma, sans-serif; color:brown; }
+
+.boldblack14 { font: bold 14px Arial, Helvetica, Tahoma, sans-serif; color:black; }
+.boldred14 { font: bold 14px Arial, Helvetica, Tahoma, sans-serif; color:red; }
+
+/*
+.x-grid3-check-col-dischecked {
+  width: 100%;
+  height: 16px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.x-grid3-check-col-dischecked {
+    background-color:transparent;
+	background-image:url(../gxt-resources/images/gxt/menu/disabledcheck.gif);
+}
+*/
+
+/*
+*/
+
+.gwt-Hyperlink a:link,.gwt-Hyperlink a:hover,.gwt-Hyperlink a:visited,.gwt-Hyperlink a:active { color:red; text-decoration:none;}
+
