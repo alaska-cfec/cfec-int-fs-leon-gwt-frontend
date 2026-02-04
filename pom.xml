@@ -349,7 +349,7 @@
                         <configuration>
                             <generatorName>java</generatorName>
                             <inputSpec>${project.basedir}/openapi/api.yaml</inputSpec>
-                            <output>${project.build.directory}/generated/openapi-client-java</output>
+							<output>${project.build.directory}/generated-sources/openapi</output>
                             <apiPackage>com.cfecweb.leon.client.api</apiPackage>
                             <modelPackage>com.cfecweb.leon.client.model</modelPackage>
                             <invokerPackage>com.cfecweb.leon.client.invoker</invokerPackage>
@@ -360,11 +360,20 @@
                             <configOptions>
                                 <!-- Use Java 11+ HTTP client to avoid extra deps -->
                                 <library>native</library>
-                                <dateLibrary>java8</dateLibrary>
+                                <dateLibrary>legacy</dateLibrary>
                                 <serializationLibrary>jackson</serializationLibrary>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <useJakartaEe>false</useJakartaEe>
+								<!-- Remove toUrlQueryString methods from models to be GWT-friendly -->
+								<supportUrlQuery>false</supportUrlQuery>
+                                <serializableModel>true</serializableModel>
                             </configOptions>
+                            <typeMappings>
+                                <typeMapping>date-time=Date</typeMapping>
+                            </typeMappings>
+                            <importMappings>
+                                <importMapping>Date=java.util.Date</importMapping>
+                            </importMappings>
                         </configuration>
                     </execution>
                 </executions>

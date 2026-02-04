@@ -1,12 +1,12 @@
 package com.cfecweb.leon.server;
 
-import com.cfecweb.leon.dto.ClientPaymentContext;
-import com.cfecweb.leon.dto.FeeTotals;
-import com.cfecweb.leon.dto.ArenewChanges;
-import com.cfecweb.leon.dto.ArenewEntity;
-import com.cfecweb.leon.dto.ArenewPayment;
-import com.cfecweb.leon.dto.ArenewPermits;
-import com.cfecweb.leon.dto.ArenewVessels;
+import com.cfecweb.leon.client.model.ClientPaymentContext;
+import com.cfecweb.leon.client.model.FeeTotals;
+import com.cfecweb.leon.client.model.ArenewChanges;
+import com.cfecweb.leon.client.model.ArenewEntity;
+import com.cfecweb.leon.client.model.ArenewPayment;
+import com.cfecweb.leon.client.model.ArenewPermits;
+import com.cfecweb.leon.client.model.ArenewVessels;
 
 import java.io.File;
 import java.io.IOException;
@@ -197,7 +197,10 @@ public class StoredPaymentContext implements Serializable {
     }
 
     public static ClientPaymentContext toClientPaymentContext(String result, StoredPaymentContext spc) {
-        return new ClientPaymentContext(result, spc.getEntity(), spc.getPay(), spc.getChg(), spc.getPlist(), spc.getVlist(),
-                spc.isHalred(), spc.isSabred(), spc.getFeeTotals(), spc.isFirstTime(), spc.getRyear(), spc.getPmtvesCount(), spc.getTopLeftText());
-    }
+        return new ClientPaymentContext().result(result).entity(spc.getEntity()).payment(spc.getPay())
+                .changeList(spc.getChg()).plist(spc.getPlist()).vlist(spc.getVlist())
+                .halred(spc.isHalred()).sabred(spc.isSabred()).feeTotals(spc.getFeeTotals())
+                .firstTime(spc.isFirstTime()).ryear(spc.getRyear()).pmtvesCount(spc.getPmtvesCount())
+                .topLeftText(spc.getTopLeftText());
+        }
 }

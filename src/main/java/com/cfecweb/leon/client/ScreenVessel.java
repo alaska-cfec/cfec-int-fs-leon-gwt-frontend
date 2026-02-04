@@ -1,19 +1,20 @@
 package com.cfecweb.leon.client;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import com.allen_sauer.gwt.log.client.Log;
-import com.cfecweb.leon.dto.FeeTotals;
+import com.cfecweb.leon.client.model.FeeTotals;
 import com.cfecweb.leon.icons.ClientResources;
-import com.cfecweb.leon.dto.ArenewChanges;
-import com.cfecweb.leon.dto.ArenewChangesId;
-import com.cfecweb.leon.dto.ArenewEntity;
-import com.cfecweb.leon.dto.ArenewPayment;
-import com.cfecweb.leon.dto.ArenewPermits;
-import com.cfecweb.leon.dto.ArenewVessels;
+import com.cfecweb.leon.client.model.ArenewChanges;
+import com.cfecweb.leon.client.model.ArenewChangesId;
+import com.cfecweb.leon.client.model.ArenewEntity;
+import com.cfecweb.leon.client.model.ArenewPayment;
+import com.cfecweb.leon.client.model.ArenewPermits;
+import com.cfecweb.leon.client.model.ArenewVessels;
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.Style.Scroll;
 import com.extjs.gxt.ui.client.data.BaseListLoader;
@@ -48,6 +49,7 @@ import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.EditorGrid;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -76,6 +78,35 @@ public class ScreenVessel {
 	String oldp1 = null;
 	String oldp2 = null;
 
+    @JsonIgnore
+    public String getFeeTotals(FeeTotals feeTotals, String res) {
+        StringBuffer ft = new StringBuffer();
+        if (res.equalsIgnoreCase("resident") || res.equalsIgnoreCase("R")) {
+            BigDecimal restot = (feeTotals.getResFishingPermits().add(feeTotals.getResDifferential())
+                    .add(feeTotals.getResVessels()).add(feeTotals.getResShipping()));
+            String rtot = restot.toString();
+            ft.append("<table width='100%' border='0' cellspacing='0' align='center'>");
+            ft.append("<tr><td class='boldblack12' width='15%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alaska Resident</td>" +
+                    "<td align='center' class='regblack12' width='22%'>Fishing Permits:&nbsp;&nbsp$<span id='rfp'><i>"+feeTotals.getResFishingPermits()+"</i></span></td>" +
+                    "<td align='center' class='regblack12' width='16%'>Non-Res Differential:&nbsp;&nbsp;$<span id='rd'><i>"+feeTotals.getResDifferential()+"</i></span></td>" +
+                    "<td align='center' class='regblack12' width='14%'>Vessels:&nbsp;&nbsp;$<span id='rv'><i>"+feeTotals.getResVessels()+"</i></span></td>" +
+                    "<td align='center' class='regblack12' width='18%'>Shipping:&nbsp;&nbsp;$<span id ='rs'><i>"+feeTotals.getResShipping()+"</i></span></td>" +
+                    "<td align='center' class='regblack12' width='15%'>Total:&nbsp;&nbsp;$<span id='rt'><i>"+rtot+"</i></span></td></tr></table>");
+        } else {
+            BigDecimal nonrestot = (feeTotals.getNonresFishingPermits().add(feeTotals.getNonresDifferential())
+                    .add(feeTotals.getNonresVessels()).add(feeTotals.getNonresShipping()));
+            String ntot = nonrestot.toString();
+            ft.append("<table width='100%' border='0' cellspacing='0' align='center'>");
+            ft.append("<tr><td class='boldblack12' width='15%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nonresident</td>" +
+                    "<td align='center' class='regblack12' width='22%'>Fishing Permits:&nbsp;&nbsp$<span id='nfp'><i>"+feeTotals.getNonresFishingPermits()+"</i></span></td>" +
+                    "<td align='center' class='regblack12' width='16%'>Non-Res Differential:&nbsp;&nbsp;$<span id='nd'><i>"+feeTotals.getNonresDifferential()+"</i></span></td>" +
+                    "<td align='center' class='regblack12' width='14%'>Vessels:&nbsp;&nbsp;$<span id='nv'><i>"+feeTotals.getNonresVessels()+"</i></span></td>" +
+                    "<td align='center' class='regblack12' width='18%'>Shipping:&nbsp;&nbsp;$<span id ='ns'><i>"+feeTotals.getNonresShipping()+"</i></span></td>" +
+                    "<td align='center' class='regblack12' width='15%'>Total:&nbsp;&nbsp;$<span id='nt'><i>"+ntot+"</i></span></td></tr></table>");
+        }
+        return ft.toString();
+    }
+
 	/*
 	 * This is the Vessel UI screen, just a grid similar to Permits where
 	 * various vessel data is displayed along with a checkbox that indicates the
@@ -100,7 +131,7 @@ public class ScreenVessel {
 		feetotalPanel.setAutoHeight(true);
 		feetotalPanel.setHorizontalAlign(HorizontalAlignment.CENTER);
 		feetotalPanel.setStyleAttribute("padding-bottom", "5px");
-		feetotalPanel.addText(feeTotals.getFeeTotals(entity.getResidency()));
+		feetotalPanel.addText(getFeeTotals(feeTotals, entity.getResidency()));
         NavprogressBarPanel.add(next);
         topRight.add(feetotalPanel);
         topRight.add(NavprogressBarPanel);

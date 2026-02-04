@@ -1,14 +1,15 @@
 package com.cfecweb.leon.client;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.allen_sauer.gwt.log.client.Log;
-import com.cfecweb.leon.dto.ArenewChanges;
-import com.cfecweb.leon.dto.ArenewEntity;
-import com.cfecweb.leon.dto.ArenewPayment;
-import com.cfecweb.leon.dto.ArenewPermits;
-import com.cfecweb.leon.dto.ArenewVessels;
-import com.cfecweb.leon.dto.FeeTotals;
+import com.cfecweb.leon.client.model.ArenewChanges;
+import com.cfecweb.leon.client.model.ArenewEntity;
+import com.cfecweb.leon.client.model.ArenewPayment;
+import com.cfecweb.leon.client.model.ArenewPermits;
+import com.cfecweb.leon.client.model.ArenewVessels;
+import com.cfecweb.leon.client.model.FeeTotals;
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.Style.VerticalAlignment;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
@@ -114,9 +115,9 @@ public class ScreenBilling {
                     statusBar.setHTML("");
                     //gmsg.waitStart("Please Wait", "Validating Billing Information....", "Progress", 250);
                     if (entity.getResidency().equalsIgnoreCase("resident") || entity.getResidency().equalsIgnoreCase("R")) {
-                        tfee = Double.parseDouble(feeTotals.getResTotal());
+                        tfee = feeTotals.getResTotals().doubleValue();
                     } else {
-                        tfee = Double.parseDouble(feeTotals.getNonResTotal());
+                        tfee = feeTotals.getNonresTotals().doubleValue();
                     }
                     statusBar.setHTML("");
 
@@ -292,20 +293,20 @@ public class ScreenBilling {
 						} else {
 							//Log.info(entity.getId().getCfecid() + " has not entered a foreign address, continue");
 							if (entity.getResidency().equalsIgnoreCase("resident") || entity.getResidency().equalsIgnoreCase("R")) {
-								if (feeTotals.getResShipping() == 0.0) {
+								if (feeTotals.getResShipping().doubleValue() == 0.0) {
 									double serfee = 15.00;
 									double shpfee = 28.95;
-									feeTotals.setResShipping(((feeTotals.getResShipping()) + serfee + shpfee));
-									DOM.getElementById("rs").setInnerText(Double.toString(feeTotals.getResShipping()));
-									DOM.getElementById("rt").setInnerText(feeTotals.getResTotal());
+									feeTotals.setResShipping(((feeTotals.getResShipping()).add(new BigDecimal(serfee + shpfee))));
+									DOM.getElementById("rs").setInnerText(feeTotals.getResShipping().toString());
+									DOM.getElementById("rt").setInnerText(feeTotals.getResTotals().toString());
 								}
 							} else {
-								if (feeTotals.getNonresShipping() == 0.0) {
+								if (feeTotals.getNonresShipping().doubleValue() == 0.0) {
 									double serfee = 15.00;
 									double shpfee = 28.95;
-									feeTotals.setNonresShipping(((feeTotals.getNonresShipping()) + serfee + shpfee));
-									DOM.getElementById("ns").setInnerText(Double.toString(feeTotals.getNonresShipping()));
-							        DOM.getElementById("nt").setInnerText(feeTotals.getNonResTotal());
+									feeTotals.setNonresShipping(((feeTotals.getNonresShipping()).add(new BigDecimal(serfee + shpfee))));
+									DOM.getElementById("ns").setInnerText(feeTotals.getNonresShipping().toString());
+							        DOM.getElementById("nt").setInnerText(feeTotals.getNonresTotals().toString());
 								}
 							}
 							first.setEnabled(true);
@@ -317,16 +318,16 @@ public class ScreenBilling {
 						}
 					} else {
 						if (entity.getResidency().equalsIgnoreCase("resident") || entity.getResidency().equalsIgnoreCase("R")) {
-							if (feeTotals.getResShipping() > 0.0) {
-								feeTotals.setResShipping(0.0);
-								DOM.getElementById("rs").setInnerText(Double.toString(feeTotals.getResShipping()));
-								DOM.getElementById("rt").setInnerText(feeTotals.getResTotal());
+							if (feeTotals.getResShipping().doubleValue() > 0.0) {
+								feeTotals.setResShipping(BigDecimal.ZERO);
+								DOM.getElementById("rs").setInnerText(feeTotals.getResShipping().toString());
+								DOM.getElementById("rt").setInnerText(feeTotals.getResTotals().toString());
 							}
 						} else {
-							if (feeTotals.getNonresShipping() > 0.0) {
-								feeTotals.setNonresShipping(0.0);
-								DOM.getElementById("ns").setInnerText(Double.toString(feeTotals.getNonresShipping()));
-						        DOM.getElementById("nt").setInnerText(feeTotals.getNonResTotal());
+							if (feeTotals.getNonresShipping().doubleValue() > 0.0) {
+								feeTotals.setNonresShipping(BigDecimal.ZERO);
+								DOM.getElementById("ns").setInnerText(feeTotals.getNonresShipping().toString());
+						        DOM.getElementById("nt").setInnerText(feeTotals.getNonresTotals().toString());
 							}
 						}
 						first.setValue(false);
