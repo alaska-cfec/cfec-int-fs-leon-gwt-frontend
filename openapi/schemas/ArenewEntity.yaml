@@ -1,0 +1,133 @@
+type: object
+properties:
+  id:
+    $ref: './ArenewEntityId.yaml'
+  poverty:
+    type: string
+  residency:
+    type: string
+  citizen:
+    type: string
+  years:
+    type: string
+  months:
+    type: string
+  area:
+    type: string
+  phone:
+    type: string
+  email:
+    type: string
+  ryear:
+    type: string
+  paddress:
+    type: string
+  paddress2:
+    type: string
+  pcity:
+    type: string
+  pstate:
+    type: string
+  pzip:
+    type: string
+  pcountry:
+    type: string
+  raddress:
+    type: string
+  raddress2:
+    type: string
+  rcity:
+    type: string
+  rcountry:
+    type: string
+  rstate:
+    type: string
+  rzip:
+    type: string
+  alienreg:
+    type: string
+  reducedHalibut:
+    type: string
+  reducedSablefish:
+    type: string
+  msnarea:
+    type: string
+  xname:
+    type: string
+  agent:
+    type: string
+  differentialc:
+    type: string
+  foreign:
+    type: boolean
+  agentsub:
+    type: string
+  diffamount:
+    type: string
+  firsttime:
+    type: string
+  company:
+    type: string
+  illegal:
+    type: string
+  createdate:
+    type: string
+    format: date-time
+  differentialp:
+    type: string
+  differentialp2:
+    type: string
+  updatedate:
+    type: string
+    format: date-time
+  pmtcount:
+    type: integer
+  vescount:
+    type: integer
+  totcount:
+    type: integer
+  diffamountcyear:
+    type: string
+  diffamountpyear:
+    type: string
+  diffamountp2year:
+    type: string
+  phonepub:
+    type: string
+  emailpub:
+    type: string
+  manual:
+    type: boolean
+  autoHALreduced:
+    type: boolean
+  autoSABreduced:
+    type: boolean
+
+  pyearabsent:
+    type: string
+  pyearabsenttext:
+    type: string
+  alaskaid:
+    type: string
+  alaskaidtext:
+    type: string
+  alaskavote:
+    type: string
+  othertext:
+    type: string
+
+  arenewVesselses:
+    type: array
+    uniqueItems: true
+    items:
+      $ref: './ArenewVessels.yaml'
+  arenewPermitses:
+    type: array
+    uniqueItems: true
+    items:
+      $ref: './ArenewPermits.yaml'
+  arenewChangeses:
+    type: array
+    uniqueItems: true
+    items:
+      $ref: './ArenewChanges.yaml'

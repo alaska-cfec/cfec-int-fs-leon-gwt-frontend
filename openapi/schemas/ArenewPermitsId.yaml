@@ -1,0 +1,12 @@
+type: object
+properties:
+  cfecid:
+    type: string
+  ryear:
+    type: string
+  serial:
+    type: string
+  pyear:
+    type: string
+  fishery:
+    type: string

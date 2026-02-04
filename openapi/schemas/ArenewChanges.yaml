@@ -1,0 +1,15 @@
+type: object
+properties:
+  id:
+    $ref: './ArenewChangesId.yaml'
+  type:
+    type: string
+  oldvalue:
+    type: string
+  newvalue:
+    type: string
+  updatedate:
+    type: string
+    format: date-time
+  object:
+    type: string

@@ -12,6 +12,7 @@
 
 	<properties>
 		<revision>2025-11-19</revision>
+        <openapi.generator.version>7.16.0</openapi.generator.version>
 		<!-- Convenience property to set the GWT version -->
 		<gwtVersion>2.10.0</gwtVersion>
 		<!-- GWT needs at least java 1.5 -->
@@ -282,7 +283,16 @@
             <scope>provided</scope>
         </dependency>
 
-
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.21.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.6</version>
+        </dependency>
 	</dependencies>
 
 
@@ -323,6 +333,60 @@
 					<runTarget>OnlineRenewal.html</runTarget>
 				</configuration>
 			</plugin>
+
+            <!-- OpenAPI generator to mirror Gradle setup -->
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>${openapi.generator.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-openapi-java-client</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <generatorName>java</generatorName>
+                            <inputSpec>${project.basedir}/openapi/api.yaml</inputSpec>
+                            <output>${project.build.directory}/generated/openapi-client-java</output>
+                            <apiPackage>com.cfecweb.leon.client.api</apiPackage>
+                            <modelPackage>com.cfecweb.leon.client.model</modelPackage>
+                            <invokerPackage>com.cfecweb.leon.client.invoker</invokerPackage>
+                            <generateApiTests>false</generateApiTests>
+                            <generateApiDocumentation>false</generateApiDocumentation>
+                            <generateModelTests>false</generateModelTests>
+                            <generateModelDocumentation>false</generateModelDocumentation>
+                            <configOptions>
+                                <!-- Use Java 11+ HTTP client to avoid extra deps -->
+                                <library>native</library>
+                                <dateLibrary>java8</dateLibrary>
+                                <serializationLibrary>jackson</serializationLibrary>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                                <useJakartaEe>false</useJakartaEe>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Clean generated API before regenerate -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${project.build.directory}/generated/src/main/java/com/cfecweb/leon/service/api</directory>
+                            <followSymlinks>false</followSymlinks>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 	

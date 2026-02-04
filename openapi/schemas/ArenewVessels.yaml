@@ -1,0 +1,158 @@
+type: object
+properties:
+  id:
+    $ref: './ArenewVesselsId.yaml'
+  name:
+    type: string
+  confirmcode:
+    type: string
+  regNum:
+    type: string
+  yearBuilt:
+    type: string
+  makeModel:
+    type: string
+  length:
+    type: string
+  inches:
+    type: string
+  lengthFeet:
+    type: string
+  lengthInches:
+    type: string
+  fee:
+    type: string
+  grossTons:
+    type: string
+  netTons:
+    type: string
+  homeportCity:
+    type: string
+  engineType:
+    type: string
+  horsepower:
+    type: string
+  estValue:
+    type: string
+  hullType:
+    type: string
+  hullId:
+    type: string
+  fuel:
+    type: string
+  holdTank:
+    type: string
+  liveTank:
+    type: string
+  refrigeration:
+    type: string
+  freezerCanner:
+    type: string
+  tenderPacker:
+    type: string
+  fishingboat:
+    type: string
+  purseseine:
+    type: string
+  beachseine:
+    type: string
+  driftgillnet:
+    type: string
+  setgillnet:
+    type: string
+  handtroll:
+    type: string
+  longline:
+    type: string
+  singleottertrawl:
+    type: string
+  fishwheel:
+    type: string
+  potgear:
+    type: string
+  ringnet:
+    type: string
+  divegear:
+    type: string
+  powertroll:
+    type: string
+  beamtrawl:
+    type: string
+  dredge:
+    type: string
+  dinglebar:
+    type: string
+  jig:
+    type: string
+  doubleottertrawl:
+    type: string
+  hearinggillnet:
+    type: string
+  pairtrawl:
+    type: string
+  receiveddate:
+    type: string
+    format: date-time
+  homeportState:
+    type: string
+  foerignFlag:
+    type: string
+  transporter:
+    type: string
+
+  othergear:
+    type: string
+  status:
+    type: string
+  vyear:
+    type: string
+  registrationType:
+    type: string
+  salmontrollReg:
+    type: string
+  salmonregArea:
+    type: string
+  permitSerial1:
+    type: string
+  permitSerial2:
+    type: string
+  lastupdated:
+    type: string
+    format: date-time
+  newVessel:
+    type: boolean
+  renewed:
+    type: boolean
+  details:
+    type: string
+  salmontrollDate:
+    type: string
+  q1:
+    type: string
+  q2:
+    type: string
+  q3:
+    type: string
+  q4:
+    type: string
+  q5:
+    type: string
+  q6:
+    type: string
+  q7:
+    type: string
+  q8:
+    type: string
+  q9:
+    type: string
+  q10:
+    type: string
+  q11:
+    type: string
+  isnew:
+    type: string
+  delorig:
+    type: string
+  newrenew:
+    type: boolean
+

@@ -1,0 +1,27 @@
+get:
+  summary: Get single vessel
+  tags: [Vessels]
+  operationId: getSingleVessel
+  parameters:
+    - name: adfg
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: ryear
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: cfecid
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Vessel object
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/ArenewVessels.yaml'

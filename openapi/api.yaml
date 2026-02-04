@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: LEON REST API
+  version: 1.0.0
+  description: LEON RESTful API migrated from GWT getData service
+servers:
+  - url: /api
+paths:
+  /vessel/check:
+    $ref: './paths/vessel-check.yaml'
+  /entity/vitals:
+    $ref: './paths/entity-vitals.yaml'
+  /forms:
+    $ref: './paths/forms.yaml'
+  /fishery/table:
+    $ref: './paths/fishery-table.yaml'
+  /order/prerequisites:
+    $ref: './paths/order-prerequisites.yaml'
+  /order/process:
+    $ref: './paths/order-process.yaml'
+  /change/process:
+    $ref: './paths/change-process.yaml'
+  /comments/email:
+    $ref: './paths/comments-email.yaml'
+  /session/timeout:
+    $ref: './paths/session-timeout.yaml'
+  /session/kill:
+    $ref: './paths/session-kill.yaml'
+  /permits/sort:
+    $ref: './paths/permits-sort.yaml'
+  /vessels/sort:
+    $ref: './paths/vessels-sort.yaml'
+  /vessel/single:
+    $ref: './paths/vessel-single.yaml'
+  /payment/checkcc:
+    $ref: './paths/payment-checkcc.yaml'
+  /app/version:
+    $ref: './paths/app-version.yaml'
+components:
+  schemas:
+    ArenewPermitsId:
+      $ref: './schemas/ArenewPermitsId.yaml'
+    ArenewEntityId:
+      $ref: './schemas/ArenewEntityId.yaml'
+    ArenewChangesId:
+      $ref: './schemas/ArenewChangesId.yaml'
+    ArenewVesselsId:
+      $ref: './schemas/ArenewVesselsId.yaml'
+    ArenewPermits:
+      $ref: './schemas/ArenewPermits.yaml'
+    ArenewEntity:
+      $ref: './schemas/ArenewEntity.yaml'
+    ArenewPayment:
+      $ref: './schemas/ArenewPayment.yaml'
+    ArenewChanges:
+      $ref: './schemas/ArenewChanges.yaml'
+    ArenewVessels:
+      $ref: './schemas/ArenewVessels.yaml'
+    FeeTotals:
+      $ref: './schemas/FeeTotals.yaml'
+    GWTfisheryTable:
+      $ref: './schemas/GWTfisheryTable.yaml'
+    ClientPaymentContext:
+      $ref: './schemas/ClientPaymentContext.yaml'
+    PaymentProcessingContextAndFields:
+      $ref: './schemas/PaymentProcessingContextAndFields.yaml'
+    UserSessionSettings:
+      $ref: './schemas/UserSessionSettings.yaml'

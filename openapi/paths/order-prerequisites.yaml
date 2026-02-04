@@ -1,0 +1,58 @@
+post:
+  summary: Create order processing prerequisites
+  tags: [Payments]
+  operationId: createOrderProcessingPrerequisites
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            ent:
+              $ref: '../schemas/ArenewEntity.yaml'
+            pay:
+              $ref: '../schemas/ArenewPayment.yaml'
+            chg:
+              type: array
+              items:
+                $ref: '../schemas/ArenewChanges.yaml'
+            plist:
+              type: array
+              items:
+                $ref: '../schemas/ArenewPermits.yaml'
+            vlist:
+              type: array
+              items:
+                $ref: '../schemas/ArenewVessels.yaml'
+            pclist:
+              type: array
+              items:
+                $ref: '../schemas/ArenewPermits.yaml'
+            vclist:
+              type: array
+              items:
+                $ref: '../schemas/ArenewVessels.yaml'
+            halred:
+              type: boolean
+            sabred:
+              type: boolean
+            feeTotals:
+              $ref: '../schemas/FeeTotals.yaml'
+            firstTime:
+              type: boolean
+            ryear:
+              type: string
+            pmtvesCount:
+              type: string
+            topLeftText:
+              type: string
+            captchaToken:
+              type: string
+  responses:
+    '200':
+      description: Order processing context
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/PaymentProcessingContextAndFields.yaml'

@@ -1,0 +1,75 @@
+type: object
+properties:
+  confirmcode:
+    type: string
+  baddress:
+    type: string
+  baddress2:
+    type: string
+  bcity:
+    type: string
+  bstate:
+    type: string
+  bzip:
+    type: string
+  ccnumber:
+    type: string
+  ccowner:
+    type: string
+  ccname:
+    type: string
+  ccmname:
+    type: string
+  cclname:
+    type: string
+  ccmonth:
+    type: string
+  ccyear:
+    type: string
+  curtx:
+    type: string
+  receiveddate:
+    type: string
+    format: date-time
+  cctype:
+    type: string
+  indicator:
+    type: string
+  totalamount:
+    type: string
+  dfee1:
+    type: string
+  dfee2:
+    type: string
+  dfee3:
+    type: string
+  ccsec:
+    type: string
+  serfee:
+    type: string
+  shipfee:
+    type: string
+  shiptype:
+    type: string
+  bcountry:
+    type: string
+  notes:
+    type: string
+  rjnumber:
+    type: string
+  revoperator:
+    type: string
+  prnoperator:
+    type: string
+  revcomplete:
+    type: string
+  prncomplete:
+    type: string
+  revdate:
+    type: string
+    format: date-time
+  prndate:
+    type: string
+    format: date-time
+  authcode:
+    type: string

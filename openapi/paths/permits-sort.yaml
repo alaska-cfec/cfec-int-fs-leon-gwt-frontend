@@ -1,0 +1,26 @@
+post:
+  summary: Sort permit list
+  tags: [Permits]
+  operationId: sortPlist
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            plist:
+              type: array
+              items:
+                $ref: '../schemas/ArenewPermits.yaml'
+            poverty:
+              type: string
+  responses:
+    '200':
+      description: Sorted permit list
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/ArenewPermits.yaml'

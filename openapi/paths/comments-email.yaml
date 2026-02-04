@@ -1,0 +1,22 @@
+post:
+  summary: Email comments
+  tags: [App]
+  operationId: emailComments
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            subject:
+              type: string
+            body:
+              type: string
+            to:
+              type: string
+            from:
+              type: string
+  responses:
+    '204':
+      description: No content

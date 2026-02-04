@@ -1,0 +1,8 @@
+type: object
+properties:
+  renewalYear:
+    type: integer
+  recaptchaSiteKey:
+    type: string
+  recaptchaAction:
+    type: string

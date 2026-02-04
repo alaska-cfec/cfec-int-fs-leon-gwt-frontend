@@ -1,0 +1,62 @@
+type: object
+properties:
+  id:
+    $ref: './ArenewPermitsId.yaml'
+  adfg:
+    type: string
+  ofee:
+    type: string
+  fee:
+    type: string
+  opfee:
+    type: string
+  pfee:
+    type: string
+  intends:
+    type: string
+  nointends:
+    type: string
+  msna:
+    type: string
+  mpmt:
+    type: string
+  notes:
+    type: string
+  receiveddate:
+    type: string
+    format: date-time
+  confirmcode:
+    type: string
+  description:
+    type: string
+  status:
+    type: string
+  type:
+    type: string
+  lastupdated:
+    type: string
+    format: date-time
+  newpermit:
+    type: boolean
+  renewed:
+    type: boolean
+  povertyfee:
+    type: boolean
+  reducedfee:
+    type: boolean
+  halibut:
+    type: boolean
+  sablefish:
+    type: boolean
+  nointend:
+    type: boolean
+  intend:
+    type: boolean
+  already:
+    type: boolean
+  intendString:
+    type: string
+  newrenew:
+    type: boolean
+  vlicensed:
+    type: string

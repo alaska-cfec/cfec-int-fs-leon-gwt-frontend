@@ -1,0 +1,26 @@
+post:
+  summary: Check if vessel is already licensed
+  tags: [Vessels]
+  operationId: checkVessel
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            plist:
+              type: array
+              items:
+                $ref: '../schemas/ArenewPermits.yaml'
+            ryear:
+              type: string
+  responses:
+    '200':
+      description: List of permits
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/ArenewPermits.yaml'

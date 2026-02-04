@@ -1,0 +1,20 @@
+post:
+  summary: Process order
+  tags: [Payments]
+  operationId: processOrder
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            ref:
+              type: string
+  responses:
+    '200':
+      description: Payment context
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/ClientPaymentContext.yaml'

@@ -1,0 +1,17 @@
+post:
+  summary: Check credit card validity
+  tags: [Payments]
+  operationId: checkCC
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/ArenewPayment.yaml'
+  responses:
+    '200':
+      description: CC validity
+      content:
+        application/json:
+          schema:
+            type: string

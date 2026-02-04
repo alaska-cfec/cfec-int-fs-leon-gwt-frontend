@@ -1,0 +1,11 @@
+get:
+  summary: Get application version
+  tags: [App]
+  operationId: getAppVersion
+  responses:
+    '200':
+      description: Version string
+      content:
+        application/json:
+          schema:
+            type: string

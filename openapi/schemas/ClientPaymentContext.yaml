@@ -1,0 +1,34 @@
+type: object
+properties:
+  result:
+    type: string
+  entity:
+    $ref: './ArenewEntity.yaml'
+  payment:
+    $ref: './ArenewPayment.yaml'
+  changeList:
+    type: array
+    items:
+      $ref: './ArenewChanges.yaml'
+  plist:
+    type: array
+    items:
+      $ref: './ArenewPermits.yaml'
+  vlist:
+    type: array
+    items:
+      $ref: './ArenewVessels.yaml'
+  halred:
+    type: boolean
+  sabred:
+    type: boolean
+  feeTotals:
+    $ref: './FeeTotals.yaml'
+  firstTime:
+    type: boolean
+  ryear:
+    type: string
+  pmtvesCount:
+    type: string
+  topLeftText:
+    type: string

@@ -1,0 +1,11 @@
+get:
+  summary: Get user session timeout
+  tags: [Session]
+  operationId: getUserSessionTimeoutMillis
+  responses:
+    '200':
+      description: Session settings
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/UserSessionSettings.yaml'

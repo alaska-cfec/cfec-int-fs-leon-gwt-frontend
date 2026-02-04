@@ -1,0 +1,18 @@
+type: object
+properties:
+  fishery:
+    type: string
+  resfee:
+    type: string
+  nonresfee:
+    type: string
+  povfee:
+    type: string
+  underfee:
+    type: string
+  description:
+    type: string
+  status:
+    type: string
+  myfee:
+    type: string

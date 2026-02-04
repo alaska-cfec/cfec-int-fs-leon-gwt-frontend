@@ -1,0 +1,26 @@
+post:
+  summary: Process change
+  tags: [Entities]
+  operationId: processChange
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+            ryear:
+              type: string
+            chg:
+              type: array
+              items:
+                $ref: '../schemas/ArenewChanges.yaml'
+  responses:
+    '200':
+      description: Success string
+      content:
+        application/json:
+          schema:
+            type: string

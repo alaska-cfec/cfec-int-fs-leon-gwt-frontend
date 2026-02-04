@@ -1,0 +1,10 @@
+type: object
+properties:
+  clientReferenceInformationCode:
+    type: string
+  redirectUrl:
+    type: string
+  fields:
+    type: object
+    additionalProperties:
+      type: string
