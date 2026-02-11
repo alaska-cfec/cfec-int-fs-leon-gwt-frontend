@@ -1,0 +1,15 @@
+type: object
+description: Callback payload sent by the payment processor.
+properties:
+  postParametersMap:
+    type: object
+    description: Map of POST parameters provided by the payment processor, where each key may have multiple values.
+    additionalProperties:
+      type: array
+      items:
+        type: string
+required:
+  - postParametersMap
+  - orderId
+  - transactionId
+  - status

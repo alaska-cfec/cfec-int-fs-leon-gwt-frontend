@@ -32,6 +32,8 @@ paths:
     $ref: './paths/vessel-single.yaml'
   /payment/checkcc:
     $ref: './paths/payment-checkcc.yaml'
+  /payment/callback:
+    $ref: './paths/payment-callback.yaml'
   /app/version:
     $ref: './paths/app-version.yaml'
 components:
@@ -64,3 +66,5 @@ components:
       $ref: './schemas/PaymentProcessingContextAndFields.yaml'
     UserSessionSettings:
       $ref: './schemas/UserSessionSettings.yaml'
+    PaymentCallback:
+      $ref: './schemas/PaymentCallback.yaml'
