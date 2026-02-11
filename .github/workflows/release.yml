@@ -85,9 +85,9 @@ jobs:
       - name: Locate war
         id: war
         run: |
-          # Prefer target/leon-2023-10-02.war; otherwise pick the largest war in target
-          if [[ -f target/leon-2023-10-02.war ]]; then
-            echo "file=target/leon-2023-10-02.war" >> $GITHUB_OUTPUT
+          # Prefer target/leon-front-2023-10-02.war; otherwise pick the largest war in target
+          if [[ -f target/leon-front-2023-10-02.war ]]; then
+            echo "file=target/leon-front-2023-10-02.war" >> $GITHUB_OUTPUT
           else
             WAR=$(ls -1S target/*.war | head -n1)
             echo "file=$WAR" >> $GITHUB_OUTPUT
@@ -99,7 +99,7 @@ jobs:
           TAG="${{ steps.ver.outputs.tag }}"
           SRC="${{ steps.war.outputs.file }}"
           mkdir -p dist
-          BASENAME="leon-${TAG}.war"
+          BASENAME="leon-front-${TAG}.war"
           cp "$SRC" "dist/${BASENAME}"
           echo "file=dist/${BASENAME}" >> $GITHUB_OUTPUT
 
@@ -111,7 +111,7 @@ jobs:
       - name: Upload workflow artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: leon-${{ steps.ver.outputs.tag }}
+          name: leon-front-${{ steps.ver.outputs.tag }}
           path: |
             ${{ steps.prep.outputs.file }}
             ${{ steps.prep.outputs.file }}.sha256
