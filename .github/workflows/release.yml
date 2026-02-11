@@ -2,7 +2,7 @@ name: CI – Build & Release
 
 on:
   #  push:
-  #    branches: [ dev ]
+  #    branches: [ main ]
   #    tags:
   #      - 'v*'
   workflow_dispatch:
@@ -15,10 +15,10 @@ jobs:
       contents: write   # needed to create releases
 
     steps:
-      - name: Checkout dev branch
+      - name: Checkout main branch
         uses: actions/checkout@v4
         with:
-          ref: dev
+          ref: main
           fetch-depth: 50
 
       - name: Show last 5 commits on the checked-out branch
